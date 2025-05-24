@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Globe Hero</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <link rel="stylesheet" href="services.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="bg-black text-white font-light">
+  <!-- Fixed Navigation -->
+  <div class="nav-wrapper">
+    <nav class="container mx-auto px-6 py-6">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <svg class="h-8 w-8 text-indigo-400" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
+          </svg>
+          <span class="ml-3 text-xl tracking-tight"><b>M A R I</b></span>
+        </div>
+        <div class="hidden md:flex space-x-10 text-sm text-gray-300">
+          <a href="../../index.html" class="nav-link hover:text-white transition-colors font-semibold">Home</a>
+          <a href="services.html" class="nav-link hover:text-white transition-colors font-semibold">Services</a>
+          <a href="contact.html" class="nav-link hover:text-white transition-colors font-semibold">Contact</a>
+          <a href="projects.html" class="nav-link hover:text-white transition-colors font-semibold">Projects</a>
+        </div>
+        <div>
+          Drink
+        </div>
+      </div>
+    </nav>
+    <div class="h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent"></div>
+  </div>
+
+  <!-- Scrollable Content -->
+  <div class="scrollable-content">
+    <div class="relative overflow-hidden">
+      <!-- Background gradient -->
+      <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-black to-black z-0"></div>
+      
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator">
+        <div class="scroll-dot active" data-section="1"></div>
+        <div class="scroll-dot" data-section="2"></div>
+        <div class="scroll-dot" data-section="3"></div>
+        <div class="scroll-dot" data-section="4"></div>
+      </div>
+
+      <!-- Hero content -->
+      <div class="container mx-auto px-6 py-16 md:py-24 relative z-10">
+        <!-- Cloud & DevOps Section -->
+        <section id="section-1">
+          <div class="flex flex-col md:flex-row items-center">
+            <!-- Text content -->
+            <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter mb-6 leading-tight slide-in">
+                  <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">1. Cloud & DevOps</span>  (AWS)
+                </h1>
+                <div class="w-full border-t border-gray-700 my-4"></div>
+
+              <p class="text-gray-300 text-2xl md:text-2xl mb-8 max-w-lg font-extralight tracking-wide slide-in slide-in-delay-1">
+                As an aspiring Cloud Engineer, <b> cloud architecture, specifically <u>AWS</u></b> is my main area of focus. I am actively building and deploying cloud-native projects using <u>AWS</u>, <u>GitHub</u>, and <u>Linux</u>. I have earned over 10 badges on <u>AWS Educate</u>, which reflect my continued learning and hands-on practice. I have worked directly with services like <u>IAM</u>, <u>EC2</u>, <u>S3</u>, and <u>Elastic Beanstalk</u> to deploy and manage applications. I have also used <u>Render</u> for simple deployments, and I am exploring <u>Microsoft Azure</u> to expand my understanding of multi-cloud environments and infrastructure management.
+              </p>
+            </div>
+            <div class="md:w-1/2 flex items-center justify-center space-x-8">
+              <!-- <img src="https://img.icons8.com/?size=100&id=43612&format=png&color=000000" alt="DevOps Logo" class="h-20 w-auto transform hover:rotate-[20deg] transition-transform duration-300" /> -->
+              <div class="aws-cluster-container">
+                <div class="icon-cluster">
+                  <div class="service-icon" style="top: 10%; left: 50%; transform: translateX(-50%) translateY(-50%);" data-title="Amazon EC2">
+                    <img src="https://cdn.simpleicons.org/amazonec2/000000" alt="EC2">
+                  </div>
+                  <div class="service-icon" style="top: 50%; right: 10%; transform: translateY(-50%) translateX(50%);" data-title="Amazon S3">
+                    <img src="https://cdn.simpleicons.org/amazons3/000000" alt="S3">
+                  </div>
+                  <div class="service-icon" style="bottom: 10%; left: 50%; transform: translateX(-50%) translateY(50%);" data-title="AWS Lambda">
+                    <img src="https://cdn.simpleicons.org/awslambda/000000" alt="Lambda">
+                  </div>
+                  <div class="service-icon" style="top: 50%; left: 10%; transform: translateY(-50%) translateX(-50%);" data-title="Amazon DynamoDB">
+                    <img src="https://cdn.simpleicons.org/amazondynamodb/000000" alt="DynamoDB">
+                  </div>
+                </div>
+              </div> 
+
+              <!-- <img src="https://img.icons8.com/?size=100&id=wU62u24brJ44&format=png&color=000000" alt="DevOps" class="h-20 w-auto transform hover:rotate-[20deg] transition-transform duration-300" /> -->
+              
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 slide-in slide-in-delay-2">
+            <a href="projects.html" class="bg-transparent border border-gray-700 rounded-md px-6 py-3 transition-all button-hover">
+              View Cloud Projects
+            </a>
+            <a href="https://www.credly.com/users/bright-owusu.2ff4b4b3" target="_blank" class="bg-transparent border border-gray-700 rounded-md px-6 py-3 transition-all button-hover">
+              View Certifications
+            </a>
+          </div>
+          <div class="h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent my-16"></div>
+        </section>
+
+        <!-- Backend Development Section -->
+        <section id="section-2">
+          <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 flex items-center justify-center space-x-8">
+              <div class="backend-cluster-container">
+                <div class="loading">
+                  <svg width="64px" height="48px">
+                    <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="back"></polyline>
+                    <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="front"></polyline>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <!-- Text content -->
+            <div class="md:w-1/2 mb-12 md:mb-0 md:pl-12">
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter mb-6 leading-tight slide-in">
+                  <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">2. Backend Development</span>
+                </h1>
+                <div class="w-full border-t border-gray-700 my-4"></div>
+
+              <p class="text-gray-300 text-2xl md:text-2xl mb-8 max-w-lg font-extralight tracking-wide slide-in slide-in-delay-1">
+                Backend development is a key part of my journey. I have strong <u>Python</u> skills and use <u>Django</u> to build robust APIs and backend systems. For low-level programming and enterprise-grade applications, I use <u>Java</u> along with <u>Spring Boot</u> for building scalable services, managing dependencies, and structuring applications with clean architecture. I have also explored <u>GoLang</u> and <u>Firebase</u> in my projects, with a focus on writing clean, readable, and well-documented code. My learning is hands-on—I grow my skills by building, testing, and improving one project at a time.
+              </p>
+
+              <div class="flex flex-col sm:flex-row gap-4 slide-in slide-in-delay-2">
+                <a href="projects.html" class="bg-transparent border border-gray-700 rounded-md px-6 py-3 transition-all button-hover">
+                  View Backend Projects
+                </a>
+                <a href="https://www.credly.com/users/bright-owusu.2ff4b4b3" target="_blank" class="bg-transparent border border-gray-700 rounded-md px-6 py-3 transition-all button-hover">
+                  View Code Samples
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent my-16"></div>
+
+        <!-- Frontend Development Section -->
+        <section id="section-3">
+          <div class="flex flex-col md:flex-row items-center">
+            <!-- Text content -->
+            <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter mb-6 leading-tight slide-in">
+                  <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">3. Frontend & Interface Development</span>
+                </h1>
+                <div class="w-full border-t border-gray-700 my-4"></div>
+
+              <p class="text-gray-300 text-2xl md:text-2xl mb-8 max-w-lg font-extralight tracking-wide slide-in slide-in-delay-1">
+                Designing clean, responsive interfaces is something I'm passionate about. I use <u>React</u> and <u>Tailwind CSS</u> to build frontends that work across devices. I'm also exploring <u>Three.js</u> to create interactive 3D elements and learn more about visual web experiences. My goal is to make UI both functional and enjoyable.
+              </p>
+
+              <div class="flex flex-col sm:flex-row gap-4 slide-in slide-in-delay-2">
+                <a href="projects.html" class="bg-transparent border border-gray-700 rounded-md px-6 py-3 transition-all button-hover">
+                  View Frontend Projects
+                </a>
+                <a href="projects.html" class="bg-transparent border border-gray-700 rounded-md px-6 py-3 transition-all button-hover">
+                  View UI Designs
+                </a>
+              </div>
+            </div>
+
+            <div class="md:w-1/2 flex items-center justify-center space-x-8">
+              <div class="three-d-container">
+                <canvas id="tetrahedron-canvas"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent my-16"></div>
+
+        <!-- Cybersecurity Section -->
+        <section id="section-4">
+          <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 flex items-center justify-center space-x-8">
+              <div class="cyber-container">
+                <div class="cyber-grid">
+                  <div class="cyber-cell"></div>
+                  <div class="cyber-cell"></div>
+                  <div class="cyber-cell"></div>
+                  <div class="cyber-cell"></div>
+                  <div class="cyber-cell"></div>
+                  <div class="cyber-cell"></div>
+                  <div class="cyber-cell"></div>
+                  <div class="cyber-cell"></div>
+                  <div class="cyber-cell"></div>
+                  <div class="cyber-cell"></div>
+                  <div class="cyber-cell"></div>
+                  <div class="cyber-cell"></div>
+                  <div class="cyber-cell"></div>
+                  <div class="cyber-cell"></div>
+                  <div class="cyber-cell"></div>
+                  <div class="cyber-cell"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Text content -->
+            <div class="md:w-1/2 mb-12 md:mb-0 md:pl-12">
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter mb-6 leading-tight slide-in">
+                  <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">4. Cybersecurity & Ethical Hacking</span>
+                </h1>
+                <div class="w-full border-t border-gray-700 my-4"></div>
+
+              <p class="text-gray-300 text-2xl md:text-2xl mb-8 max-w-lg font-extralight tracking-wide slide-in slide-in-delay-1">
+                Cybersecurity is a central part of my learning journey. I am actively building my skills through hands-on platforms like <u>Hack The Box</u> and <u>TryHackMe</u>, where I explore real-world vulnerabilities and practice defensive techniques. My foundation includes networking fundamentals from <u>Cisco Academy</u> and cloud security concepts from <u>AWS Educate</u>. I focus on both the technical side—like penetration testing and system hardening—and the strategic aspects of protecting digital assets. With over six certificates and more than twenty badges across multiple platforms, I am developing a well-rounded and practical understanding of how to secure systems and defend against threats.
+              </p>
+
+              <div class="flex flex-col sm:flex-row gap-4 slide-in slide-in-delay-2">
+                <a href="projects.html" class="bg-transparent border border-gray-700 rounded-md px-6 py-3 transition-all button-hover">
+                  View Security Projects
+                </a>
+                <a href="https://www.credly.com/users/bright-owusu.2ff4b4b3" target="_blank" class="bg-transparent border border-gray-700 rounded-md px-6 py-3 transition-all button-hover">
+                  View Certifications
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent my-16"></div>
+
+        <!-- Footer Note -->
+        <section id="section-5">
+          <div class="container mx-auto px-6 py-16 text-center">
+            <div class="max-w-3xl mx-auto">
+              <p class="text-gray-300 text-xl md:text-2xl font-extralight tracking-wide leading-relaxed slide-in">
+                I enjoy turning ideas into real, functional systems. Whether it's setting up cloud infrastructure, building clean and reliable backend code, or helping secure your app, I bring a hands-on approach focused on making things work smoothly and securely. If you need someone who's serious about quality but easy to work with, you're in the right place.
+              </p>
+              <div class="mt-8 flex justify-center space-x-6">
+                <a href="contact.html" class="bg-transparent border border-gray-700 rounded-md px-6 py-3 transition-all button-hover">
+                  Let's Work Together
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Three.js Tetrahedron Animation
+    const canvas = document.getElementById('tetrahedron-canvas');
+    const renderer = new THREE.WebGLRenderer({ 
+      canvas: canvas,
+      alpha: true,
+      antialias: true 
+    });
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+    camera.position.z = 5;
+
+    // Add OrbitControls
+    const controls = new THREE.OrbitControls(camera, canvas);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.rotateSpeed = 0.5;
+    controls.enableZoom = false;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.5;
+
+    // Create tetrahedron
+    const geometry = new THREE.TetrahedronGeometry(2, 0);
+    const material = new THREE.MeshPhongMaterial({
+      color: 0x818cf8,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.8,
+      shininess: 100
+    });
+    const tetrahedron = new THREE.Mesh(geometry, material);
+    scene.add(tetrahedron);
+
+    // Add lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+
+    const pointLight = new THREE.PointLight(0xffffff, 1);
+    pointLight.position.set(5, 5, 5);
+    scene.add(pointLight);
+
+    // Animation
+    function animate() {
+      requestAnimationFrame(animate);
+      
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      
+      renderer.setSize(width, height);
+    });
+
+    animate();
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const card = document.querySelector('.flip-card');
+      card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+      });
+    });
+
+    // Add scroll indicator functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('section');
+      const dots = document.querySelectorAll('.scroll-dot');
+      let isScrolling = false;
+      let currentSection = 0;
+
+      // Function to scroll to section
+      function scrollToSection(index) {
+        if (isScrolling) return;
+        isScrolling = true;
+        currentSection = index;
+        
+        sections[index].scrollIntoView({ behavior: 'smooth' });
+        
+        // Update active dot
+        dots.forEach(dot => {
+          dot.classList.remove('active');
+          if (dot.dataset.section == index + 1) {
+            dot.classList.add('active');
+          }
+        });
+
+        // Reset scrolling flag after animation
+        setTimeout(() => {
+          isScrolling = false;
+        }, 1000);
+      }
+
+      // Handle wheel events
+      window.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        if (isScrolling) return;
+
+        if (e.deltaY > 0 && currentSection < sections.length - 1) {
+          scrollToSection(currentSection + 1);
+        } else if (e.deltaY < 0 && currentSection > 0) {
+          scrollToSection(currentSection - 1);
+        }
+      }, { passive: false });
+
+      // Handle keyboard navigation
+      window.addEventListener('keydown', (e) => {
+        if (isScrolling) return;
+
+        if (e.key === 'ArrowDown' && currentSection < sections.length - 1) {
+          scrollToSection(currentSection + 1);
+        } else if (e.key === 'ArrowUp' && currentSection > 0) {
+          scrollToSection(currentSection - 1);
+        }
+      });
+
+      // Click dot to scroll to section
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const sectionIndex = parseInt(dot.dataset.section) - 1;
+          scrollToSection(sectionIndex);
+        });
+      });
+
+      // Initial section setup
+      scrollToSection(0);
+    });
+  </script>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="fixed bottom-8 right-8 bg-indigo-600 text-white p-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 hover:bg-indigo-700 focus:outline-none">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+    </svg>
+  </button>
+
+  <script>
+    // Back to Top Button Functionality
+    const backToTopButton = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.remove('opacity-0');
+        backToTopButton.classList.add('opacity-100');
+      } else {
+        backToTopButton.classList.remove('opacity-100');
+        backToTopButton.classList.add('opacity-0');
+      }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
