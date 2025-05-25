@@ -30,6 +30,96 @@
       opacity: 1;
       visibility: visible;
     }
+
+    /* Add responsive styles */
+    @media (max-width: 640px) {
+      .nav-button {
+        padding: 0.5rem;
+        font-size: 0.875rem;
+      }
+      
+      .projects-container {
+        scroll-snap-type: x mandatory;
+      }
+      
+      .min-w-\[100vw\] {
+        scroll-snap-align: start;
+      }
+    }
+
+    /* Improve touch scrolling on mobile */
+    .projects-container {
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
+
+    /* Adjust navigation buttons for mobile */
+    .nav-button {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 30;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      padding: 0.75rem;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .nav-button:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    .nav-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .nav-button.prev {
+      left: 1rem;
+    }
+
+    .nav-button.next {
+      right: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .nav-button {
+        padding: 0.5rem;
+      }
+      
+      .nav-button.prev {
+        left: 0.5rem;
+      }
+      
+      .nav-button.next {
+        right: 0.5rem;
+      }
+    }
+
+    /* Update container styles */
+    .projects-container {
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      width: 100vw;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .projects-container > div {
+      width: 100vw;
+      max-width: 100%;
+      flex-shrink: 0;
+    }
+
+    /* Improve touch scrolling on mobile */
+    @media (max-width: 640px) {
+      .projects-container > div {
+        scroll-snap-align: start;
+      }
+    }
   </style>
 </head>
 <body class="bg-black text-white font-light">
@@ -84,7 +174,7 @@
   <div id="overlay" class="overlay fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"></div>
 
   <!-- Projects Section -->
-  <div class="min-h-screen relative">
+  <div class="min-h-screen relative overflow-hidden">
     <!-- Background gradient -->
     <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-black to-black z-0"></div>
 
@@ -97,20 +187,20 @@
     </button>
 
     <!-- Projects Container -->
-    <div class="projects-container overflow-x-auto flex flex-nowrap min-h-screen" id="projectsContainer">
+    <div class="projects-container overflow-x-hidden flex flex-nowrap min-h-screen w-full" id="projectsContainer">
       <!-- Header Slide -->
-      <div class="min-w-[100vw] flex-shrink-0">
-        <div class="container mx-auto px-6 py-16 relative z-10 min-h-screen flex flex-col items-center justify-center">
-          <div class="text-center max-w-4xl mx-auto">
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter mb-6 leading-tight slide-in">
+      <div class="w-full flex-shrink-0">
+        <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative z-10 min-h-screen flex flex-col items-center justify-center">
+          <div class="text-center max-w-4xl mx-auto px-4">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter mb-4 sm:mb-6 leading-tight slide-in">
               <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">My Projects</span>
             </h1>
             <div class="w-full border-t border-gray-700 my-4"></div>
-            <p class="text-gray-300 text-xl md:text-2xl mb-8 font-extralight tracking-wide slide-in slide-in-delay-1">
+            <p class="text-gray-300 text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 font-extralight tracking-wide slide-in slide-in-delay-1">
               A collection of my work across cloud computing, web development, and cybersecurity. Each project represents a unique challenge and learning opportunity.
             </p>
-            <div class="flex justify-center mt-8 slide-in slide-in-delay-2">
-              <button onclick="scrollToProject(1)" class="bg-transparent border border-gray-700 rounded-md px-6 py-3 transition-all button-hover">
+            <div class="flex justify-center mt-6 sm:mt-8 slide-in slide-in-delay-2">
+              <button onclick="scrollToProject(1)" class="bg-transparent border border-gray-700 rounded-md px-4 sm:px-6 py-2 sm:py-3 transition-all button-hover text-sm sm:text-base">
                 Explore Projects
               </button>
             </div>
@@ -119,55 +209,55 @@
       </div>
 
       <!-- MSUnit Project -->
-      <div class="min-w-[100vw] flex-shrink-0">
-        <div class="container mx-auto px-6 py-16 relative z-10 min-h-screen flex flex-col">
-          <div class="flex flex-col md:flex-row items-center flex-1">
+      <div class="w-full flex-shrink-0">
+        <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative z-10 min-h-screen flex flex-col">
+          <div class="flex flex-col md:flex-row items-center flex-1 gap-8">
             <!-- Text content -->
-            <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
-              <h1 class="text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter mb-6 leading-tight slide-in">
+            <div class="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter mb-4 sm:mb-6 leading-tight slide-in">
                 <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">1. Introducing MSUnit</span>
               </h1>
-              <div class="flex flex-wrap gap-3 mb-6">
-                <span class="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+              <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <i class="fab fa-python mr-2"></i>Python
                 </span>
-                <span class="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <i class="fab fa-django mr-2"></i>Django
                 </span>
-                <span class="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <i class="fas fa-database mr-2"></i>SQLite
                 </span>
-                <span class="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <i class="fas fa-server mr-2"></i>Render
                 </span>
-                <span class="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <i class="fas fa-database mr-2"></i>PostgreSQL
                 </span>
               </div>
               <div class="w-full border-t border-gray-700 my-4"></div>
 
               <div class="w-full">
-                <p class="text-gray-300 text-lg md:text-xl mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
                   MSUnit is an innovative web-based clinical management system designed to transform stroke patient care. Our platform empowers medical professionals with real-time tracking, intelligent alerting, and seamless communication, ensuring that every second counts in critical situations.
                 </p>
-                <p class="text-gray-300 text-lg md:text-xl mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
                   With MSUnit, healthcare providers can efficiently manage patient data, monitor vital signs, and facilitate remote consultations with neurologists. Our system features role-based access control, automated risk assessments, and comprehensive clinical documentation, all while adhering to HIPAA compliance standards.
                 </p>
-                <p class="text-gray-300 text-lg md:text-xl mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
                   We aim to revolutionize stroke care by reducing response times, minimizing documentation errors, and creating a streamlined workflow for stroke unit management. Experience the future of healthcare with MSUnit, where technology meets compassion for better patient outcomes.
                 </p>
               </div>
             </div>  
-            <div class="md:w-1/2 flex items-center justify-center space-x-8">
-              <img src="../images/msunit5.png" alt="MSUnit Logo" class="max-w-md w-full h-auto rounded-2xl border-4 border-gray-700 shadow-2xl" />
+            <div class="w-full md:w-1/2 flex items-center justify-center">
+              <img src="../images/msunit5.png" alt="MSUnit Logo" class="w-full max-w-md h-auto rounded-2xl border-4 border-gray-700 shadow-2xl" />
             </div>
           </div>
           <div class="flex flex-col sm:flex-row gap-4 justify-center slide-in slide-in-delay-2 mb-8 mt-auto">
-            <a href="https://github.com/omariomari2/MSUnit.git" target="_blank" class="bg-transparent border border-gray-700/50 rounded-lg px-6 py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2">
+            <a href="https://github.com/omariomari2/MSUnit.git" target="_blank" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base">
               <i class="fab fa-github"></i>
               View on GitHub
             </a>
-            <a href="https://msunit.onrender.com/" target="_blank" class="bg-transparent border border-gray-700/50 rounded-lg px-6 py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2">
+            <a href="https://msunit.onrender.com/" target="_blank" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base">
               <i class="fas fa-external-link-alt"></i>
               View Live
             </a>
@@ -176,49 +266,49 @@
       </div>
 
       <!-- Pomodoro Play Project -->
-      <div class="min-w-[100vw] flex-shrink-0">
-        <div class="container mx-auto px-6 py-16 relative z-10 min-h-screen flex flex-col">
-          <div class="flex flex-col md:flex-row items-center flex-1">
+      <div class="w-full flex-shrink-0">
+        <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative z-10 min-h-screen flex flex-col">
+          <div class="flex flex-col md:flex-row items-center flex-1 gap-8">
             <!-- Text content -->
-            <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
-              <h1 class="text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter mb-6 leading-tight slide-in">
+            <div class="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter mb-4 sm:mb-6 leading-tight slide-in">
                 <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">2. Pomodoro Play</span>
               </h1>
-              <div class="flex flex-wrap gap-3 mb-6">
-                <span class="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+              <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <i class="fab fa-chrome mr-2"></i>Chrome API
                 </span>
-                <span class="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <i class="fas fa-code mr-2"></i>JSON
                 </span>
-                <span class="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <i class="fab fa-js mr-2"></i>JavaScript
                 </span>
               </div>
               <div class="w-full border-t border-gray-700 my-4"></div>
 
               <div class="w-full">
-                <p class="text-gray-300 text-lg md:text-xl mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
                   Let's be real, using your phone to stay focused on studying is like using fire to fight fire. A 15 minutes break turns into an hour scrolling through social media. It's built to distract you. That's exactly why I built this Chrome extension.
                 </p>
-                <p class="text-gray-300 text-lg md:text-xl mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
                   It's a minimalist, no-nonsense Pomodoro timer that lives in your browser—right where your work happens. No more switching between tabs or unlocking your phone every few minutes. You get focused work sprints, timed breaks, and a distraction-free experience that helps you actually get things done.
                 </p>
-                <p class="text-gray-300 text-lg md:text-xl mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
                   It's productivity, redesigned for students and deep workers who want to take back control.
                 </p>
               </div>
             </div>
-            <div class="md:w-1/2 flex items-center justify-center space-x-8">
+            <div class="w-full md:w-1/2 flex items-center justify-center">
               <div class="loader"></div>
             </div>
           </div>
           <div class="flex flex-col sm:flex-row gap-4 justify-center slide-in slide-in-delay-2 mb-8 mt-auto">
-            <a href="https://github.com/omariomari2/Pomodoro-Play.git" target="_blank" class="bg-transparent border border-gray-700/50 rounded-lg px-6 py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2">
+            <a href="https://github.com/omariomari2/Pomodoro-Play.git" target="_blank" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base">
               <i class="fab fa-github"></i>
               View on GitHub
             </a>
-            <a href="https://work-break-symphony.vercel.app/" target="_blank" class="bg-transparent border border-gray-700/50 rounded-lg px-6 py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2">
+            <a href="https://work-break-symphony.vercel.app/" target="_blank" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base">
               <i class="fas fa-external-link-alt"></i>
               View Live
             </a>
@@ -227,37 +317,37 @@
       </div>
 
       <!-- ProfessionProfile Project (WVS 1.01) -->
-      <div class="min-w-[100vw] flex-shrink-0">
-        <div class="container mx-auto px-6 py-16 relative z-10 min-h-screen flex flex-col">
-          <div class="flex flex-col md:flex-row items-center flex-1">
+      <div class="w-full flex-shrink-0">
+        <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative z-10 min-h-screen flex flex-col">
+          <div class="flex flex-col md:flex-row items-center flex-1 gap-8">
             <!-- Text content -->
-            <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
-              <h1 class="text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter mb-6 leading-tight slide-in">
+            <div class="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter mb-4 sm:mb-6 leading-tight slide-in">
                 <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">3. WVS 1.01</span>
               </h1>
-              <div class="flex flex-wrap gap-3 mb-6">
-                <span class="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+              <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <i class="fab fa-python mr-2"></i>Python
                 </span>
-                <span class="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <i class="fas fa-bolt mr-2"></i>Asyncio
                 </span>
-                <span class="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <i class="fas fa-robot mr-2"></i>Gemini API
                 </span>
               </div>
               <div class="w-full border-t border-gray-700 my-4"></div>
 
               <div class="w-full">
-                <p class="text-gray-300 text-lg md:text-xl mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
                   If you've ever used a website scanner before, you probably stared at the results thinking, 'Wait, what does any of this even mean?' Most tools throw jargon at you—XSS, CSRF, header injection—without context. That's where WVS comes in. It scans your website and breaks down vulnerabilities in plain, human language. No need for the tech guy with his big tech vocab—just clear, actionable insight you can actually use.
                 </p>
-                <p class="text-gray-300 text-lg md:text-xl mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
                   WVS comes with a command-line interface for developers who like to stay in flow, and a clean web interface if you prefer clicking over typing. Whether you're a student, developer, or startup founder, one thing's for sure: you need WVS!
                 </p>
               </div>
             </div>
-            <div class="md:w-1/2 flex items-center justify-center space-x-8">
+            <div class="w-full md:w-1/2 flex items-center justify-center">
               <div class="button-container">
                 <input type="checkbox" id="subscribeCheckbox" class="subscribe-checkbox" />
                 <label for="subscribeCheckbox" class="hacker-button">
@@ -293,7 +383,7 @@
             </div>
           </div>
           <div class="flex flex-col sm:flex-row gap-4 justify-center slide-in slide-in-delay-2 mb-8 mt-auto">
-            <a href="https://github.com/omariomari2/Website-Vulnerability-Scanner.git" class="bg-transparent border border-gray-700/50 rounded-lg px-6 py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2" target="_blank">
+            <a href="https://github.com/omariomari2/Website-Vulnerability-Scanner.git" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base" target="_blank">
               <i class="fab fa-github"></i>
               View on GitHub
             </a>
@@ -302,31 +392,31 @@
       </div>
 
       <!-- Words Per Minute Project -->
-      <div class="min-w-[100vw] flex-shrink-0">
-        <div class="container mx-auto px-6 py-16 relative z-10 min-h-screen flex flex-col">
-          <div class="flex flex-col md:flex-row items-center flex-1">
+      <div class="w-full flex-shrink-0">
+        <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative z-10 min-h-screen flex flex-col">
+          <div class="flex flex-col md:flex-row items-center flex-1 gap-8">
             <!-- Text content -->
-            <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
-              <h1 class="text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter mb-6 leading-tight slide-in">
+            <div class="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter mb-4 sm:mb-6 leading-tight slide-in">
                 <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">4. Words Per Minute</span>
               </h1>
-              <div class="flex flex-wrap gap-3 mb-6">
-                <span class="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+              <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <i class="fab fa-python mr-2"></i>Python
                 </span>
-                <span class="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <i class="fas fa-terminal mr-2"></i>Curses
                 </span>
               </div>
               <div class="w-full border-t border-gray-700 my-4"></div>
 
               <div class="w-full">
-                <p class="text-gray-300 text-lg md:text-xl mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
                   Words Per Minute is a lightweight CLI tool for developers and learners who want to track and improve their typing speed without leaving the terminal.
                 </p>
               </div>
             </div>
-            <div class="md:w-1/2 flex items-center justify-center space-x-8">
+            <div class="w-full md:w-1/2 flex items-center justify-center">
               <div class="🤚">
                 <div class="👉"></div>
                 <div class="👉"></div>
@@ -338,7 +428,7 @@
             </div>
           </div>
           <div class="flex flex-col sm:flex-row gap-4 justify-center slide-in slide-in-delay-2 mb-8 mt-auto">
-            <a href="https://github.com/omariomari2/Words-Per-Minute-" class="bg-transparent border border-gray-700/50 rounded-lg px-6 py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2" target="_blank">
+            <a href="https://github.com/omariomari2/Words-Per-Minute-" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base" target="_blank">
               <i class="fab fa-github"></i>
               View on GitHub
             </a>
@@ -347,34 +437,34 @@
       </div>
 
       <!-- CosmicVista Project -->
-      <div class="min-w-[100vw] flex-shrink-0">
-        <div class="container mx-auto px-6 py-16 relative z-10 min-h-screen flex flex-col">
-          <div class="flex flex-col md:flex-row items-center flex-1">
+      <div class="w-full flex-shrink-0">
+        <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative z-10 min-h-screen flex flex-col">
+          <div class="flex flex-col md:flex-row items-center flex-1 gap-8">
             <!-- Text content -->
-            <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
-              <h1 class="text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter mb-6 leading-tight slide-in">
+            <div class="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter mb-4 sm:mb-6 leading-tight slide-in">
                 <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">5. CosmicVista</span>
               </h1>
-              <div class="flex flex-wrap gap-3 mb-6">
-                <span class="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+              <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <i class="fab fa-react mr-2"></i>React
                 </span>
-                <span class="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <img src="https://img.icons8.com/ios-filled/24/ffffff/planet.png" class="mr-2" alt="Three.js"/>Three.js
                 </span>
-                <span class="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <i class="fab fa-css3-alt mr-2"></i>Tailwind CSS
                 </span>
               </div>
               <div class="w-full border-t border-gray-700 my-4"></div>
 
               <div class="w-full">
-                <p class="text-gray-300 text-lg md:text-xl mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
                   CosmicVista is an interactive 3D space simulation built using Three.js, vanilla JavaScript, and CSS. It features a responsive rendering of the Sun, nine planets, meteors, stars, and other celestial components—offering a dynamic and educational view of our solar system. Designed as a hands-on learning tool, this project helps younger students visualize and engage with space in a more immersive way than traditional methods allow. Future expansions aim to simulate real-time cosmic events and deeper space phenomena, making CosmicVista a continuously evolving space learning platform.
                 </p>
               </div>
             </div>
-            <div class="md:w-1/2 flex items-center justify-center space-x-8">
+            <div class="w-full md:w-1/2 flex items-center justify-center">
               <div class="rocket">
                 <div class="rocket-body">
                   <div class="body"></div>
@@ -407,11 +497,11 @@
             </div>
           </div>
           <div class="flex flex-col sm:flex-row gap-4 justify-center slide-in slide-in-delay-2 mb-8 mt-auto">
-            <a href="https://omariportfolio.netlify.app/" class="bg-transparent border border-gray-700/50 rounded-lg px-6 py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2" target="_blank">
+            <a href="https://omariportfolio.netlify.app/" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base" target="_blank">
               <i class="fab fa-github"></i>
               View on GitHub
             </a>
-            <a href="https://omariportfolio.netlify.app/" class="bg-transparent border border-gray-700/50 rounded-lg px-6 py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2" target="_blank">
+            <a href="https://omariportfolio.netlify.app/" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base" target="_blank">
               <i class="fas fa-external-link-alt"></i>
               View Live
             </a>
@@ -420,43 +510,43 @@
       </div>
 
       <!-- Church Site Project -->
-      <div class="min-w-[100vw] flex-shrink-0">
-        <div class="container mx-auto px-6 py-16 relative z-10 min-h-screen flex flex-col">
-          <div class="flex flex-col md:flex-row items-center flex-1">
+      <div class="w-full flex-shrink-0">
+        <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative z-10 min-h-screen flex flex-col">
+          <div class="flex flex-col md:flex-row items-center flex-1 gap-8">
             <!-- Text content -->
-            <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
-              <h1 class="text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter mb-6 leading-tight slide-in">
+            <div class="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter mb-4 sm:mb-6 leading-tight slide-in">
                 <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">6. Church Site</span>
               </h1>
-              <div class="flex flex-wrap gap-3 mb-6">
-                <span class="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+              <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <i class="fab fa-react mr-2"></i>React
                 </span>
-                <span class="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <i class="fab fa-node-js mr-2"></i>Node.js
                 </span>
-                <span class="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <i class="fab fa-css3-alt mr-2"></i>Tailwind CSS
                 </span>
               </div>
               <div class="w-full border-t border-gray-700 my-4"></div>
 
               <div class="w-full">
-                <p class="text-gray-300 text-lg md:text-xl mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1">
                   This project is a web application designed to support the community through various church activities and projects. It aims to provide a platform for donations, project updates, and community engagement.
                 </p>
               </div>
             </div>
-            <div class="md:w-1/2 flex items-center justify-center space-x-8">
-              <img src="../images/lab.png" alt="Church Site Custom Logo" class="max-w-xl h-auto rounded-2xl shadow-2xl" style="border: none; background: none;" />
+            <div class="w-full md:w-1/2 flex items-center justify-center">
+              <img src="../images/lab.png" alt="Church Site Custom Logo" class="w-full max-w-xl h-auto rounded-2xl shadow-2xl" style="border: none; background: none;" />
             </div>
           </div>
           <div class="flex flex-col sm:flex-row gap-4 justify-center slide-in slide-in-delay-2 mb-8 mt-auto">
-            <a href="https://github.com/omariomari2/Church-Site.git" class="bg-transparent border border-gray-700/50 rounded-lg px-6 py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2" target="_blank">
+            <a href="https://github.com/omariomari2/Church-Site.git" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base" target="_blank">
               <i class="fab fa-github"></i>
               View on GitHub
             </a>
-            <a href="https://welcome-to-church.netlify.app/" class="bg-transparent border border-gray-700/50 rounded-lg px-6 py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2" target="_blank">
+            <a href="https://welcome-to-church.netlify.app/" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base" target="_blank">
               <i class="fas fa-external-link-alt"></i>
               View Live
             </a>
@@ -710,6 +800,39 @@
     mobileMenuButton.addEventListener('click', toggleMenu);
     closeMenuButton.addEventListener('click', toggleMenu);
     overlay.addEventListener('click', toggleMenu);
+
+    // Add touch event handling for better mobile experience
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    container.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    container.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0 && currentIndex < projects.length - 1) {
+          // Swipe left
+          scrollToProject(currentIndex + 1);
+        } else if (diff < 0 && currentIndex > 0) {
+          // Swipe right
+          scrollToProject(currentIndex - 1);
+        }
+      }
+    }
+
+    // Add resize handler to update scroll positions
+    window.addEventListener('resize', () => {
+      scrollToProject(currentIndex);
+    });
   </script>
 </body>
 </html>
