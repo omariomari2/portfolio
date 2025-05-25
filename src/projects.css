@@ -863,6 +863,7 @@
   font-weight: 300;
   background: linear-gradient(to right, #4f46e5, #a855f7);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 1rem;
 }
@@ -1168,7 +1169,7 @@
 }
 
 .flip-card-front {
-  background-image: url('images/frontend.png');
+  background-image: url('images/dhg.png');
   background-size: cover;
   background-position: center;
   color: #fff;
@@ -1309,6 +1310,15 @@
   .flip-card-front, .flip-card-back { 
     width: 100%; 
     height: auto; 
+  }
+  .flip-card-front .contact-info h1 {
+    font-size: 1.3em !important;
+  }
+  .flip-card-front .contact-info h2 {
+    font-size: 1em !important;
+  }
+  .flip-card-front .contact-info p {
+    font-size: 0.9em;
   }
   .flip-card-back { 
     grid-template-columns: 1fr; 
