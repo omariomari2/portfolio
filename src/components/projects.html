@@ -120,6 +120,28 @@
         scroll-snap-align: start;
       }
     }
+
+    /* Reduce font sizes for mobile */
+    @media (max-width: 640px) {
+      h1, .text-4xl, .text-5xl, .text-6xl, .text-7xl, .text-3xl, .text-2xl {
+        font-size: 1.5rem !important;
+        line-height: 2rem !important;
+      }
+      h2, .text-2xl, .text-xl {
+        font-size: 1.125rem !important;
+        line-height: 1.75rem !important;
+      }
+      p, .text-lg, .text-base, .text-sm {
+        font-size: 0.95rem !important;
+        line-height: 1.5rem !important;
+      }
+      .button-hover, button, a {
+        font-size: 0.95rem !important;
+      }
+      .projects-container .flex.flex-col.md\:flex-row h1 {
+        font-size: 1.25rem !important;
+      }
+    }
   </style>
 </head>
 <body class="bg-black text-white font-light">
