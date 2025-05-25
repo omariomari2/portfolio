@@ -1071,6 +1071,10 @@
     font-size: 0.95rem;
     max-width: 100%;
   }
+
+  .flip-card { 
+    display: none; /* Hide the flipcard on mobile devices */
+  }
 }
 
 @media (max-width: 480px) {
