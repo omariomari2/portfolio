@@ -1021,3 +1021,85 @@
 @media (max-width: 700px) {
   .timeline-line, .timeline-marker { display: none; }
 }
+
+/* Mobile Optimizations */
+@media (max-width: 640px) {
+  .nav-button {
+    padding: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .nav-button.prev {
+    left: 0.5rem;
+  }
+
+  .nav-button.next {
+    right: 0.5rem;
+  }
+
+  .zigzag-row .experience-card {
+    min-width: 0;
+    max-width: 100%;
+    margin: 0.5rem 0;
+    padding: 1rem;
+  }
+
+  .experience-title {
+    font-size: 1.1rem;
+  }
+
+  .experience-company {
+    font-size: 0.9rem;
+  }
+
+  .experience-date {
+    font-size: 0.8rem;
+  }
+
+  .experience-details {
+    font-size: 0.9rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-header p {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-button {
+    padding: 0.4rem;
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .zigzag-row {
+    margin: 1rem 0;
+  }
+
+  .experience-card {
+    padding: 0.75rem;
+  }
+
+  .experience-title {
+    font-size: 1rem;
+  }
+
+  .experience-company {
+    font-size: 0.85rem;
+  }
+
+  .experience-date {
+    font-size: 0.75rem;
+  }
+
+  .experience-details {
+    font-size: 0.85rem;
+  }
+}
