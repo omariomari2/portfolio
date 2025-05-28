@@ -231,19 +231,19 @@
       <!-- Stats -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 slide-in slide-in-delay-3">
         <div>
-          <p class="text-4xl font-bold mb-1 tracking-tight">1+</p>
+          <p class="text-5xl font-bold mb-1 tracking-tight">0+</p>
           <p class="text-gray-400 font-medium">Years of Experience</p>
         </div>
         <div>
-            <p class="text-4xl font-bold mb-1 tracking-tight">10+</p>
+            <p class="text-5xl font-bold mb-1 tracking-tight">0+</p>
             <p class="text-gray-400 font-medium">Projects</p>
         </div>
         <div>
-          <p class="text-4xl font-bold mb-1 tracking-tight">30+</p>
+          <p class="text-5xl font-bold mb-1 tracking-tight">0+</p>
           <p class="text-gray-400 font-medium">Badges</p>
         </div>
         <div>
-          <p class="text-4xl font-bold mb-1 tracking-tight">400+</p>
+          <p class="text-5xl font-bold mb-1 tracking-tight">0+</p>
           <p class="text-gray-400 font-medium">Commits</p>
         </div>
       </div>
@@ -302,6 +302,53 @@
     mobileMenuButton.addEventListener('click', toggleMenu);
     closeMenuButton.addEventListener('click', toggleMenu);
     overlay.addEventListener('click', toggleMenu);
+  </script>
+
+  <!-- Stats Counter Script -->
+  <script>
+    function animateValue(element, start, end, duration) {
+      return new Promise((resolve) => {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          const value = Math.floor(progress * (end - start) + start);
+          element.textContent = value + '+';
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          } else {
+            resolve();
+          }
+        };
+        window.requestAnimationFrame(step);
+      });
+    }
+
+    // Intersection Observer to trigger animation when stats are in view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const stats = Array.from(entry.target.querySelectorAll('p.text-5xl'));
+          const finalValues = [1, 10, 30, 400]; // Final values for each stat
+          
+          // Animate all stats simultaneously
+          stats.forEach((stat, index) => {
+            animateValue(stat, 0, finalValues[index], 2500);
+          });
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { 
+      threshold: 0.1,
+      rootMargin: '50px'
+    });
+
+    // Observe the stats section
+    const statsSection = document.querySelector('.grid.grid-cols-2');
+    if (statsSection) {
+      observer.observe(statsSection);
+    }
   </script>
 </body>
 </html>
