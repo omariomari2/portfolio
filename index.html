@@ -133,6 +133,19 @@
         glowPulse 1.5s infinite;
     }
 
+    /* Add new class for automatic animation */
+    .hacker-button.auto-animate {
+      background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+      transform: rotateX(15deg) rotateY(15deg) translateZ(20px);
+      box-shadow:
+        0 10px 25px rgba(129, 140, 248, 0.6),
+        0 0 40px rgba(129, 140, 248, 0.3),
+        inset 0 0 15px rgba(129, 140, 248, 0.2);
+      animation:
+        flicker 0.2s infinite alternate,
+        glowPulse 1.5s infinite;
+    }
+
     /* 3D Click Effect */
     .hacker-button:active {
       transform: scale(0.95) rotateX(-10deg) rotateY(-10deg) translateZ(-10px);
@@ -536,6 +549,21 @@
     if (statsSection) {
       observer.observe(statsSection);
     }
+  </script>
+
+  <!-- Auto Animation Script -->
+  <script>
+    const hackerButton = document.querySelector('.hacker-button');
+    
+    function startAutoAnimation() {
+      hackerButton.classList.add('auto-animate');
+      setTimeout(() => {
+        hackerButton.classList.remove('auto-animate');
+      }, 3000); // Remove animation after 3 seconds
+    }
+
+    // Start the interval
+    setInterval(startAutoAnimation, 10000); // Run every 10 seconds
   </script>
 </body>
 </html>
