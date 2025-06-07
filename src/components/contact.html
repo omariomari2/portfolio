@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <link rel="icon" type="image/png" href="../images/icon.png">
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -184,76 +185,114 @@
     <h1 class="text-4xl md:text-5xl font-light mb-8 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400 animate-fadeInUp delay-200">Contact Me</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
       <div class="w-full animate-fadeInUp delay-300">
-        <form class="space-y-6">
+        <form id="contact-form" class="space-y-6" onsubmit="return sendEmail(event)">
           <div class="animate-fadeInUp delay-400">
             <label class="block text-gray-300 mb-2" for="name">Name</label>
-            <input type="text" id="name" class="w-full px-4 py-2 bg-gray-900 border border-gray-800 rounded-md focus:outline-none focus:border-indigo-500">
+            <input type="text" id="name" name="name" required class="w-full px-4 py-2 bg-gray-900 border border-gray-800 rounded-md focus:outline-none focus:border-indigo-500">
           </div>
           <div class="animate-fadeInUp delay-500">
             <label class="block text-gray-300 mb-2" for="email">Email</label>
-            <input type="email" id="email" class="w-full px-4 py-2 bg-gray-900 border border-gray-800 rounded-md focus:outline-none focus:border-indigo-500">
+            <input type="email" id="email" name="email" required class="w-full px-4 py-2 bg-gray-900 border border-gray-800 rounded-md focus:outline-none focus:border-indigo-500">
+          </div>
+          <div class="animate-fadeInUp delay-500">
+            <label class="block text-gray-300 mb-2" for="inquiry_type">Inquiry Type</label>
+            <select id="inquiry_type" name="inquiry_type" required class="w-full px-4 py-2 bg-gray-900 border border-gray-800 rounded-md focus:outline-none focus:border-indigo-500">
+              <option value="">Select an option</option>
+              <option value="Project">Project</option>
+              <option value="Job Opportunity">Job Opportunity</option>
+              <option value="Consultation">Consultation</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="animate-fadeInUp delay-500">
+            <label class="block text-gray-300 mb-2" for="company">Company (Optional)</label>
+            <input type="text" id="company" name="company" class="w-full px-4 py-2 bg-gray-900 border border-gray-800 rounded-md focus:outline-none focus:border-indigo-500">
           </div>
           <div class="animate-fadeInUp delay-600">
             <label class="block text-gray-300 mb-2" for="message">Message</label>
-            <textarea id="message" rows="6" class="w-full px-4 py-2 bg-gray-900 border border-gray-800 rounded-md focus:outline-none focus:border-indigo-500"></textarea>
+            <textarea id="message" name="message" rows="6" required class="w-full px-4 py-2 bg-gray-900 border border-gray-800 rounded-md focus:outline-none focus:border-indigo-500"></textarea>
           </div>
-          <button type="submit" class="bg-white text-black font-light rounded-md px-6 py-3 hover:bg-opacity-90 transition-all animate-fadeInUp delay-700">Send Message</button>
+          <button type="submit" class="submit-btn bg-white text-black font-light rounded-md px-6 py-3 hover:bg-opacity-90 transition-all animate-fadeInUp delay-700">
+            <span class="default-text">Send Message</span>
+            <span class="loading-text" style="display: none;">Sending...</span>
+          </button>
         </form>
 
         <!-- Social Links -->
         <div class="mt-12 flex flex-wrap justify-start gap-8">
-          <a href="https://linkedin.com/in/brightowusu" target="_blank" 
-             class="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center transition-all button-hover group relative"
-             title="LinkedIn">
-            <i class="fab fa-linkedin text-2xl group-hover:icon-pulse"></i>
-          </a>
-          <a href="https://github.com/omariomari2" target="_blank" 
-             class="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center transition-all button-hover group relative"
-             title="GitHub">
-            <i class="fab fa-github text-2xl group-hover:icon-pulse"></i>
-          </a>
-          <a href="https://devfolio.co/@omari_omari" target="_blank" 
-             class="w-16 h-16 bg-transparent border border-gray-700 text-white rounded-full flex items-center justify-center transition-all button-hover group relative hover:border-indigo-400"
-             title="Devfolio">
-            <i class="fas fa-code text-2xl group-hover:icon-pulse"></i>
-          </a>
-          <a href="https://www.credly.com/users/bright-owusu.2ff4b4b3" target="_blank" 
-             class="w-16 h-16 bg-transparent border border-gray-700 text-white rounded-full flex items-center justify-center transition-all button-hover group relative hover:border-indigo-400"
-             title="Credly">
-            <i class="fas fa-award text-2xl group-hover:icon-pulse"></i>
-          </a>
-          <a href="https://academy.hackthebox.com/my-badges" target="_blank" 
-             class="w-16 h-16 bg-transparent border border-gray-700 text-white rounded-full flex items-center justify-center transition-all button-hover group relative hover:border-indigo-400"
-             title="Hack The Box">
-            <i class="fas fa-shield-alt text-2xl group-hover:icon-pulse"></i>
-          </a>
-          <a href="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=4729036" target="_blank" 
-             class="w-16 h-16 bg-transparent border border-gray-700 text-white rounded-full flex items-center justify-center transition-all button-hover group relative hover:border-indigo-400"
-             title="TryHackMe">
-            <i class="fas fa-terminal text-2xl group-hover:icon-pulse"></i>
-          </a>
+          <div class="flex flex-col items-center">
+            <a href="https://linkedin.com/in/brightowusu" target="_blank" 
+               class="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center transition-all button-hover group relative"
+               title="LinkedIn">
+              <i class="fab fa-linkedin text-2xl group-hover:icon-pulse"></i>
+            </a>
+            <span class="mt-2 text-sm text-gray-400">LinkedIn</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <a href="https://github.com/omariomari2" target="_blank" 
+               class="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center transition-all button-hover group relative"
+               title="GitHub">
+              <i class="fab fa-github text-2xl group-hover:icon-pulse"></i>
+            </a>
+            <span class="mt-2 text-sm text-gray-400">GitHub</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <a href="https://devfolio.co/@omari_omari" target="_blank" 
+               class="w-16 h-16 bg-transparent border border-gray-700 text-white rounded-full flex items-center justify-center transition-all button-hover group relative hover:border-indigo-400"
+               title="Devfolio">
+              <i class="fas fa-code text-2xl group-hover:icon-pulse"></i>
+            </a>
+            <span class="mt-2 text-sm text-gray-400">Devfolio</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <a href="https://www.credly.com/users/bright-owusu.2ff4b4b3" target="_blank" 
+               class="w-16 h-16 bg-transparent border border-gray-700 text-white rounded-full flex items-center justify-center transition-all button-hover group relative hover:border-indigo-400"
+               title="Credly">
+              <i class="fas fa-award text-2xl group-hover:icon-pulse"></i>
+            </a>
+            <span class="mt-2 text-sm text-gray-400">Credly</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <a href="https://academy.hackthebox.com/my-badges" target="_blank" 
+               class="w-16 h-16 bg-transparent border border-gray-700 text-white rounded-full flex items-center justify-center transition-all button-hover group relative hover:border-indigo-400"
+               title="Hack The Box">
+              <i class="fas fa-shield-alt text-2xl group-hover:icon-pulse"></i>
+            </a>
+            <span class="mt-2 text-sm text-gray-400">Hack The Box</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <a href="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=4729036" target="_blank" 
+               class="w-16 h-16 bg-transparent border border-gray-700 text-white rounded-full flex items-center justify-center transition-all button-hover group relative hover:border-indigo-400"
+               title="TryHackMe">
+              <i class="fas fa-terminal text-2xl group-hover:icon-pulse"></i>
+            </a>
+            <span class="mt-2 text-sm text-gray-400">TryHackMe</span>
+          </div>
         </div>
       </div>
       <div class="flex flex-col items-center justify-center h-full -mt-8">
         <img src="../Facee.jpg" alt="@Facee" class="w-[500px] h-[500px] object-cover rounded-[50%] border-4 border-indigo-400 shadow-lg animate-scaleIn delay-300" />
-        <span class="mt-4 text-lg font-medium text-indigo-300 animate-fadeIn delay-400">@omari_omari</span>
+        <span class="mt-4 text-xl font-medium text-indigo-300 tracking-wide animate-fadeIn delay-400">@omari_omari</span>
         
         <!-- Contact Details -->
-        <div class="mt-6 text-center animate-fadeInUp delay-500">
-          <h2 class="text-2xl font-light mb-2">Bright Omari Owusu</h2>
-          <p class="text-gray-300 mb-1">Software Engineer & Cloud Security Specialist</p>
-          <p class="text-gray-400 mb-3">403 Main St, Grambling LA, 71245</p>
+        <div class="mt-8 text-center animate-fadeInUp delay-500 max-w-md">
+          <h2 class="text-3xl font-light mb-3 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">Bright Omari Owusu</h2>
+          <p class="text-lg text-gray-300 mb-2 font-medium">Aspiring Software & Cloud Security Engineer</p>
+          <p class="text-gray-400 mb-6 text-sm tracking-wide">403 Main St, Grambling LA, 71245</p>
           
-          <div class="space-y-1 text-gray-300">
-            <p class="animate-fadeIn delay-600">
-              <i class="fas fa-envelope mr-2"></i>
+          <div class="space-y-3 text-gray-300">
+            <p class="animate-fadeIn delay-600 flex items-center justify-center gap-2 hover:text-indigo-400 transition-colors">
+              <i class="fas fa-envelope text-indigo-400"></i>
               <a href="mailto:owusuomaribright@gmail.com" class="hover:text-indigo-400 transition-colors">owusuomaribright@gmail.com</a>
             </p>
-            <p class="animate-fadeIn delay-700">
-              <i class="fas fa-envelope mr-2"></i>
+            <p class="animate-fadeIn delay-700 flex items-center justify-center gap-2 hover:text-indigo-400 transition-colors">
+              <i class="fas fa-envelope text-indigo-400"></i>
               <a href="mailto:owusuomaribright@outlook.com" class="hover:text-indigo-400 transition-colors">owusuomaribright@outlook.com</a>
             </p>
-            <p class="animate-fadeIn delay-800"><i class="fas fa-phone mr-2"></i>+1 (318) 394-6621</p>
+            <p class="animate-fadeIn delay-800 flex items-center justify-center gap-2">
+              <i class="fas fa-phone text-indigo-400"></i>
+              <span>+1 (318) 394-6621</span>
+            </p>
           </div>
         </div>
       </div>
@@ -262,6 +301,60 @@
 
   <!-- Add this before the closing body tag -->
   <script>
+    // Initialize EmailJS
+    (function() {
+        emailjs.init("ySHgOCav0GR7JaPsb");
+    })();
+
+    function sendEmail(event) {
+        event.preventDefault();
+
+        // Get the button and its text elements
+        const submitBtn = document.querySelector('.submit-btn');
+        const defaultText = submitBtn.querySelector('.default-text');
+        const loadingText = submitBtn.querySelector('.loading-text');
+
+        // Show loading state
+        submitBtn.disabled = true;
+        defaultText.style.display = 'none';
+        loadingText.style.display = 'inline';
+
+        // Get form data
+        const templateParams = {
+            from_name: document.getElementById('name').value,
+            from_email: document.getElementById('email').value,
+            inquiry_type: document.getElementById('inquiry_type').value,
+            company: document.getElementById('company').value,
+            message: document.getElementById('message').value
+        };
+
+        // Send email using EmailJS
+        emailjs.send('service_kx1wd3a', 'template_53z1ra5', templateParams)
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                // Show success message
+                alert('Message sent successfully!');
+                // Reset form
+                const formElement = document.getElementById('contact-form');
+                if (formElement && typeof formElement.reset === 'function') {
+                    formElement.reset();
+                } else {
+                    console.error('Form element not found or reset method not available');
+                }
+            }, function(error) {
+                console.error('FAILED...', error);
+                alert('Failed to send message. Please try again.');
+            })
+            .finally(function() {
+                // Reset button state
+                submitBtn.disabled = false;
+                defaultText.style.display = 'inline';
+                loadingText.style.display = 'none';
+            });
+
+        return false;
+    }
+
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const closeMenuButton = document.getElementById('close-menu');
     const mobileMenu = document.getElementById('mobile-menu');

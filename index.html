@@ -89,6 +89,168 @@
       transform: scaleX(1);
     }
 
+    /* Hacker Button Styling */
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 800px;
+    }
+
+    .hacker-button {
+      background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+      color: #818cf8;
+      padding: 14px 36px;
+      font-size: 20px;
+      font-family: "Courier New", monospace;
+      font-weight: 700;
+      border: 2px solid #818cf8;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 15px rgba(129, 140, 248, 0.3);
+      transform-style: preserve-3d;
+      transform: rotateX(0deg) rotateY(0deg);
+      text-decoration: none;
+    }
+
+    /* 3D Hover Effects */
+    .hacker-button:hover {
+      background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+      transform: rotateX(15deg) rotateY(15deg) translateZ(20px);
+      box-shadow:
+        0 10px 25px rgba(129, 140, 248, 0.6),
+        0 0 40px rgba(129, 140, 248, 0.3),
+        inset 0 0 15px rgba(129, 140, 248, 0.2);
+      animation:
+        flicker 0.2s infinite alternate,
+        glowPulse 1.5s infinite;
+    }
+
+    /* 3D Click Effect */
+    .hacker-button:active {
+      transform: scale(0.95) rotateX(-10deg) rotateY(-10deg) translateZ(-10px);
+      box-shadow:
+        0 0 10px rgba(129, 140, 248, 0.4),
+        inset 0 0 20px rgba(129, 140, 248, 0.3);
+      animation: glitch 0.3s ease-in-out;
+    }
+
+    /* SVG Animations */
+    .play-icon {
+      transition: transform 0.4s ease;
+    }
+
+    .hacker-button:hover .rect-path {
+      animation: pulseRect 1.5s infinite;
+    }
+
+    .hacker-button:hover .triangle-path {
+      animation:
+        bounceTriangle 0.8s infinite,
+        rotateTriangle 2s infinite;
+    }
+
+    /* Particle Layer */
+    .particle-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0;
+      background: radial-gradient(
+          circle at 20% 20%,
+          rgba(129, 140, 248, 0.2) 0%,
+          transparent 50%
+        ),
+        radial-gradient(circle at 80% 80%, rgba(129, 140, 248, 0.2) 0%, transparent 50%);
+      transition: opacity 0.3s ease;
+    }
+
+    /* Animations */
+    @keyframes flicker {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0.85;
+      }
+    }
+
+    @keyframes glowPulse {
+      0% {
+        box-shadow: 0 10px 25px rgba(129, 140, 248, 0.6);
+      }
+      50% {
+        box-shadow: 0 15px 35px rgba(129, 140, 248, 0.8);
+      }
+      100% {
+        box-shadow: 0 10px 25px rgba(129, 140, 248, 0.6);
+      }
+    }
+
+    @keyframes pulseRect {
+      0% {
+        stroke-width: 2;
+      }
+      50% {
+        stroke-width: 3.5;
+      }
+      100% {
+        stroke-width: 2;
+      }
+    }
+
+    @keyframes bounceTriangle {
+      0% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(4px);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes rotateTriangle {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes glitch {
+      0% {
+        transform: translate(0) rotateX(0) rotateY(0);
+      }
+      20% {
+        transform: translate(-2px, 2px) rotateX(2deg);
+      }
+      40% {
+        transform: translate(2px, -2px) rotateY(-2deg);
+      }
+      60% {
+        transform: translate(-1px, 1px) rotateX(1deg);
+      }
+      80% {
+        transform: translate(1px, -1px) rotateY(-1deg);
+      }
+      100% {
+        transform: translate(0) rotateX(0) rotateY(0);
+      }
+    }
+
     /* Mobile Navigation Styles */
     .mobile-menu {
       transform: translateX(100%);
@@ -186,12 +348,37 @@
             <br>Let's build something amazing! <a href="src/components/contact.html" class="text-white font-light hover:underline italic">Together</a>
           </p>
           <div class="flex flex-col sm:flex-row gap-4 slide-in slide-in-delay-2">
-            <a href="src/my_resume.pdf" target="_blank" class="bg-white text-black font-light rounded-md px-6 py-3 transition-all button-hover flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-              Download CV 
-            </a>
+            <div class="button-container">
+              <a href="src/my_resume.pdf" target="_blank" class="hacker-button">
+                <svg
+                  viewBox="0 0 48 48"
+                  height="32"
+                  width="32"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon play-icon"
+                >
+                  <path
+                    class="rect-path"
+                    d="M43.112 14.394a5 5 0 0 0-3.533-3.533c-2.314-.894-24.732-1.332-31.236.025A5 5 0 0 0 4.81 14.42c-1.045 4.583-1.124 14.491.026 19.177a5 5 0 0 0 3.533 3.533c4.583 1.055 26.371 1.203 31.236 0a5 5 0 0 0 3.533-3.533c1.114-4.993 1.193-14.287-.026-19.203"
+                    stroke-linejoin="round"
+                    stroke-linecap="round"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    fill="none"
+                  ></path>
+                  <path
+                    class="triangle-path"
+                    d="M30.567 23.995L20.12 18.004v11.982Z"
+                    stroke-linejoin="round"
+                    stroke-linecap="round"
+                    stroke="currentColor"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+                <span class="button-text">Download CV</span>
+                <div class="particle-layer"></div>
+              </a>
+            </div>
             <a href="src/components/contact.html" class="bg-transparent border border-gray-700 rounded-md px-6 py-3 transition-all button-hover flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4 1.5" />
