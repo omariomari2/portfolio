@@ -129,6 +129,77 @@
       animation: float 3s ease-in-out infinite;
     }
 
+    /* Scroll Indicator Styles */
+    .scroll-indicator {
+      position: fixed;
+      right: 5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      z-index: 100;
+    }
+
+    .scroll-dot {
+      width: 40px;
+      height: 2px;
+      background: rgba(129, 140, 248, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .scroll-dot::before {
+      content: attr(data-title);
+      position: absolute;
+      top: -20px;
+      right: 0;
+      white-space: nowrap;
+      font-size: 12px;
+      color: rgba(129, 140, 248, 0.5);
+      transition: all 0.3s ease;
+      transform: translateX(0);
+    }
+
+    .scroll-dot:hover::before {
+      color: rgba(192, 132, 252, 0.8);
+      transform: translateX(-5px);
+    }
+
+    .scroll-dot.active {
+      background: linear-gradient(90deg, rgba(129, 140, 248, 0.8), rgba(192, 132, 252, 0.8));
+      width: 60px;
+    }
+
+    .scroll-dot.active::before {
+      color: rgba(192, 132, 252, 0.8);
+    }
+
+    @media (max-width: 640px) {
+      .scroll-indicator {
+        right: 3rem;
+        gap: 0.75rem;
+      }
+
+      .scroll-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(129, 140, 248, 0.3);
+      }
+
+      .scroll-dot::before {
+        display: none;
+      }
+
+      .scroll-dot.active {
+        background: rgba(192, 132, 252, 0.8);
+        transform: scale(1.2);
+        width: 8px;
+      }
+    }
+
     .shield-body {
       position: absolute;
       width: 100%;
@@ -204,6 +275,81 @@
         transform: scale(1.1);
       }
     }
+
+    /* Medical Animation Styles */
+    .medical-animation {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pulse-circle {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: rgba(79, 70, 229, 0.2);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .heart-beat {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(45deg, #4f46e5, #7c3aed);
+      clip-path: path('M50,30 C50,30 20,0 20,30 C20,60 50,90 50,90 C50,90 80,60 80,30 C80,0 50,30 50,30 Z');
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+
+    .ecg-line {
+      position: absolute;
+      bottom: 50px;
+      width: 200px;
+      height: 60px;
+      background: linear-gradient(90deg, 
+        transparent 0%, transparent 10%,
+        #4f46e5 10%, #4f46e5 12%,
+        transparent 12%, transparent 20%,
+        #4f46e5 20%, #4f46e5 22%,
+        transparent 22%, transparent 30%,
+        #4f46e5 30%, #4f46e5 32%,
+        transparent 32%, transparent 40%,
+        #4f46e5 40%, #4f46e5 42%,
+        transparent 42%, transparent 50%,
+        #4f46e5 50%, #4f46e5 52%,
+        transparent 52%, transparent 60%,
+        #4f46e5 60%, #4f46e5 62%,
+        transparent 62%, transparent 70%,
+        #4f46e5 70%, #4f46e5 72%,
+        transparent 72%, transparent 80%,
+        #4f46e5 80%, #4f46e5 82%,
+        transparent 82%, transparent 90%,
+        #4f46e5 90%, #4f46e5 92%,
+        transparent 92%, transparent 100%
+      );
+      animation: ecg 2s linear infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    @keyframes ecg {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 200px 0;
+      }
+    }
   </style>
 </head>
 <body class="bg-black text-white font-light">
@@ -261,6 +407,17 @@
   <div class="min-h-screen relative overflow-hidden">
     <!-- Background gradient -->
     <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-black to-black z-0"></div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+      <div class="scroll-dot active" data-section="1" data-title="Projects Home"></div>
+      <div class="scroll-dot" data-section="2" data-title="Automated Call Center"></div>
+      <div class="scroll-dot" data-section="3" data-title="MSUnit"></div>
+      <div class="scroll-dot" data-section="4" data-title="WVS 1.01"></div>
+      <div class="scroll-dot" data-section="5" data-title="Pomodoro Play"></div>
+      <div class="scroll-dot" data-section="6" data-title="Words Per Minute"></div>
+      <div class="scroll-dot" data-section="7" data-title="CosmicVista"></div>
+    </div>
 
     <!-- Navigation Buttons -->
     <button class="nav-button prev" id="prevButton" disabled>
@@ -397,6 +554,64 @@
         </div>
       </div>
 
+      <!-- Automated Call Center with AWS Project -->
+      <div class="w-full flex-shrink-0">
+        <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative z-10 min-h-screen flex flex-col">
+          <div class="flex flex-col md:flex-row items-center flex-1 gap-8">
+            <!-- Text content -->
+            <div class="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter mb-4 sm:mb-6 leading-tight slide-in">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">1. Automated Call Center with AWS</span>
+              </h1>
+              <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                  <i class="fab fa-aws mr-2"></i>AWS Lex
+                </span>
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                  <i class="fab fa-aws mr-2"></i>AWS Lambda
+                </span>
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                  <i class="fab fa-aws mr-2"></i>AWS Connect
+                </span>
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                  <i class="fab fa-js mr-2"></i>JavaScript
+                </span>
+              </div>
+              <div class="w-full border-t border-gray-700 my-4"></div>
+
+              <div class="w-full">
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1 md:block hidden">
+                  This project builds an AI-powered call center using Amazon Connect and Amazon Lex, designed to optimize customer interactions through intelligent automation. By integrating real-time call routing, conversational AI, and personalized responses, it ensures efficient service while maintaining scalability and cost-effectiveness. With advanced workflow logic and secure cloud infrastructure, businesses can enhance customer engagement and streamline operations seamlessly.
+                </p>
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1 md:block hidden">
+                  I built this system by configuring Amazon Connect to manage inbound calls, selecting DID and Toll-Free numbers for accessibility. To automate interactions, I integrated an Amazon Lex bot, designing intents that allow customers to check balances, request advisors, and navigate services effortlessly. I also developed AWS Lambda functions that pull customer data from DynamoDB, enabling personalized greetings and dynamic call routing. To ensure security, I set up IAM roles, refining access permissions for different components, making the project ready for integrating into professional workplaces.
+                </p>
+                <!-- Mobile Summary -->
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1 md:hidden">
+                  AI-powered call center using Amazon Connect and Lex, featuring intelligent automation, real-time routing, and personalized customer interactions for efficient service delivery.
+                </p>
+              </div>
+            </div>
+            <div class="w-full md:w-1/2 flex items-center justify-center">
+              <div class="security-shield">
+                <div class="shield-body">
+                  <div class="shield-inner"></div>
+                  <div class="shield-border"></div>
+                  <div class="shield-pattern"></div>
+                </div>
+                <div class="shield-glow"></div>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center slide-in slide-in-delay-2 mb-8 mt-auto">
+            <a href="https://github.com/omariomari2/Automated-Call-Center-with-AWS" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base" target="_blank">
+              <i class="fab fa-github"></i>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
       <!-- MSUnit Project -->
       <div class="w-full flex-shrink-0">
         <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative z-10 min-h-screen flex flex-col">
@@ -404,7 +619,7 @@
             <!-- Text content -->
             <div class="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
               <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter mb-4 sm:mb-6 leading-tight slide-in">
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">1. Introducing MSUnit</span>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">2. MSUnit</span>
               </h1>
               <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
                 <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
@@ -417,7 +632,7 @@
                   <i class="fas fa-database mr-2"></i>SQLite
                 </span>
                 <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
-                  <i class="fas fa-server mr-2"></i>Render
+                  <i class="fas fa-cloud mr-2"></i>Render
                 </span>
                 <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
                   <i class="fas fa-database mr-2"></i>PostgreSQL
@@ -437,20 +652,27 @@
                 </p>
                 <!-- Mobile Summary -->
                 <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1 md:hidden">
-                  MSUnit: A web-based clinical management system transforming stroke care through real-time tracking and intelligent alerting, reducing response times and improving patient outcomes.
+                  MSUnit: A web-based clinical management system revolutionizing stroke patient care with real-time tracking, intelligent alerting, and seamless communication for healthcare professionals.
                 </p>
               </div>
-            </div>  
+            </div>
             <div class="w-full md:w-1/2 flex items-center justify-center">
-              <img src="../images/msunit5.png" alt="MSUnit Logo" class="w-full max-w-md h-auto rounded-2xl border-4 border-gray-700 shadow-2xl" />
+              <div class="backend-cluster-container">
+                <div class="loading">
+                  <svg width="64px" height="48px">
+                    <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="back"></polyline>
+                    <polyline points="0.157 23.954, 14 23.954, 21.843 48, 43 0, 50 24, 64 24" id="front"></polyline>
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
           <div class="flex flex-col sm:flex-row gap-4 justify-center slide-in slide-in-delay-2 mb-8 mt-auto">
-            <a href="https://github.com/omariomari2/MSUnit.git" target="_blank" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base">
+            <a href="https://github.com/omariomari2/MSUnit" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base" target="_blank">
               <i class="fab fa-github"></i>
               View on GitHub
             </a>
-            <a href="https://msunit.onrender.com/" target="_blank" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base">
+            <a href="https://msunit.onrender.com" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base" target="_blank">
               <i class="fas fa-external-link-alt"></i>
               View Live
             </a>
@@ -458,62 +680,7 @@
         </div>
       </div>
 
-      <!-- Pomodoro Play Project -->
-      <div class="w-full flex-shrink-0">
-        <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative z-10 min-h-screen flex flex-col">
-          <div class="flex flex-col md:flex-row items-center flex-1 gap-8">
-            <!-- Text content -->
-            <div class="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
-              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter mb-4 sm:mb-6 leading-tight slide-in">
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">2. Pomodoro Play</span>
-              </h1>
-              <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
-                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
-                  <i class="fab fa-chrome mr-2"></i>Chrome API
-                </span>
-                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
-                  <i class="fas fa-code mr-2"></i>JSON
-                </span>
-                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
-                  <i class="fab fa-js mr-2"></i>JavaScript
-                </span>
-              </div>
-              <div class="w-full border-t border-gray-700 my-4"></div>
-
-              <div class="w-full">
-                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1 md:block hidden">
-                  Let's be real, using your phone to stay focused on studying is like using fire to fight fire. A 15 minutes break turns into an hour scrolling through social media. It's built to distract you. That's exactly why I built this Chrome extension.
-                </p>
-                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1 md:block hidden">
-                  It's a minimalist, no-nonsense Pomodoro timer that lives in your browser—right where your work happens. No more switching between tabs or unlocking your phone every few minutes. You get focused work sprints, timed breaks, and a distraction-free experience that helps you actually get things done.
-                </p>
-                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1 md:block hidden">
-                  It's productivity, redesigned for students and deep workers who want to take back control.
-                </p>
-                <!-- Mobile Summary -->
-                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1 md:hidden">
-                  Pomodoro Play: A minimalist Chrome extension that keeps you focused with work sprints and timed breaks, eliminating distractions and helping you maintain productivity.
-                </p>
-              </div>
-            </div>
-            <div class="w-full md:w-1/2 flex items-center justify-center">
-              <div class="loader"></div>
-            </div>
-          </div>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center slide-in slide-in-delay-2 mb-8 mt-auto">
-            <a href="https://github.com/omariomari2/Pomodoro-Play.git" target="_blank" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base">
-              <i class="fab fa-github"></i>
-              View on GitHub
-            </a>
-            <a href="https://work-break-symphony.vercel.app/" target="_blank" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base">
-              <i class="fas fa-external-link-alt"></i>
-              View Live
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- ProfessionProfile Project (WVS 1.01) -->
+      <!-- WVS 1.01 Project -->
       <div class="w-full flex-shrink-0">
         <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative z-10 min-h-screen flex flex-col">
           <div class="flex flex-col md:flex-row items-center flex-1 gap-8">
@@ -615,8 +782,6 @@
                   <div class="frequency-bar"></div>
                   <div class="frequency-bar"></div>
                   <div class="frequency-bar"></div>
-                  <div class="frequency-bar"></div>
-                  <div class="frequency-bar"></div>
                 </div>
 
                 <div class="data-chips">
@@ -637,6 +802,61 @@
         </div>
       </div>
 
+      <!-- Pomodoro Play Project -->
+      <div class="w-full flex-shrink-0">
+        <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative z-10 min-h-screen flex flex-col">
+          <div class="flex flex-col md:flex-row items-center flex-1 gap-8">
+            <!-- Text content -->
+            <div class="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter mb-4 sm:mb-6 leading-tight slide-in">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">4. Pomodoro Play</span>
+              </h1>
+              <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                  <i class="fab fa-chrome mr-2"></i>Chrome API
+                </span>
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                  <i class="fas fa-code mr-2"></i>JSON
+                </span>
+                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
+                  <i class="fab fa-js mr-2"></i>JavaScript
+                </span>
+              </div>
+              <div class="w-full border-t border-gray-700 my-4"></div>
+
+              <div class="w-full">
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1 md:block hidden">
+                  Let's be real, using your phone to stay focused on studying is like using fire to fight fire. A 15 minutes break turns into an hour scrolling through social media. It's built to distract you. That's exactly why I built this Chrome extension.
+                </p>
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1 md:block hidden">
+                  It's a minimalist, no-nonsense Pomodoro timer that lives in your browser—right where your work happens. No more switching between tabs or unlocking your phone every few minutes. You get focused work sprints, timed breaks, and a distraction-free experience that helps you actually get things done.
+                </p>
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1 md:block hidden">
+                  It's productivity, redesigned for students and deep workers who want to take back control.
+                </p>
+                <!-- Mobile Summary -->
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1 md:hidden">
+                  Pomodoro Play: A minimalist Chrome extension that keeps you focused with work sprints and timed breaks, eliminating distractions and helping you maintain productivity.
+                </p>
+              </div>
+            </div>
+            <div class="w-full md:w-1/2 flex items-center justify-center">
+              <div class="loader"></div>
+            </div>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center slide-in slide-in-delay-2 mb-8 mt-auto">
+            <a href="https://github.com/omariomari2/Pomodoro-Play.git" target="_blank" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base">
+              <i class="fab fa-github"></i>
+              View on GitHub
+            </a>
+            <a href="https://work-break-symphony.vercel.app/" target="_blank" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base">
+              <i class="fas fa-external-link-alt"></i>
+              View Live
+            </a>
+          </div>
+        </div>
+      </div>
+
       <!-- Words Per Minute Project -->
       <div class="w-full flex-shrink-0">
         <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative z-10 min-h-screen flex flex-col">
@@ -644,7 +864,7 @@
             <!-- Text content -->
             <div class="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
               <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter mb-4 sm:mb-6 leading-tight slide-in">
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">4. Words Per Minute</span>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">5. Words Per Minute</span>
               </h1>
               <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
                 <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
@@ -689,7 +909,7 @@
             <!-- Text content -->
             <div class="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
               <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter mb-4 sm:mb-6 leading-tight slide-in">
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">5. CosmicVista</span>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">6. CosmicVista</span>
               </h1>
               <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
                 <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
@@ -766,7 +986,7 @@
             <!-- Text content -->
             <div class="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
               <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter mb-4 sm:mb-6 leading-tight slide-in">
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">6. Church Site</span>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">7. Church Site</span>
               </h1>
               <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
                 <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
@@ -803,126 +1023,6 @@
             <a href="https://welcome-to-church.netlify.app/" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base" target="_blank">
               <i class="fas fa-external-link-alt"></i>
               View Live
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- CloudGuard Dashboard Project -->
-      <div class="w-full flex-shrink-0">
-        <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative z-10 min-h-screen flex flex-col">
-          <div class="flex flex-col md:flex-row items-center flex-1 gap-8">
-            <!-- Text content -->
-            <div class="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
-              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter mb-4 sm:mb-6 leading-tight slide-in">
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">7. CloudGuard Dashboard</span>
-              </h1>
-              <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
-                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
-                  <i class="fab fa-aws mr-2"></i>AWS Lex
-                </span>
-                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
-                  <i class="fab fa-aws mr-2"></i>AWS Lambda
-                </span>
-                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
-                  <i class="fab fa-aws mr-2"></i>AWS Connect
-                </span>
-                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
-                  <i class="fab fa-js mr-2"></i>JavaScript
-                </span>
-              </div>
-              <div class="w-full border-t border-gray-700 my-4"></div>
-
-              <div class="w-full">
-                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1 md:block hidden">
-                  CloudGuard Dashboard is a comprehensive cloud security monitoring platform that provides real-time visibility into AWS infrastructure security. Built with React and Node.js, it offers automated security assessments, compliance monitoring, and threat detection capabilities.
-                </p>
-                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1 md:block hidden">
-                  The platform integrates with AWS Security Hub and GuardDuty to provide centralized security monitoring, automated compliance checks, and real-time alerts for potential security threats. It features customizable dashboards, detailed security reports, and automated remediation workflows.
-                </p>
-                <!-- Mobile Summary -->
-                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1 md:hidden">
-                  CloudGuard Dashboard: A comprehensive cloud security monitoring platform providing real-time visibility and automated security assessments for AWS infrastructure.
-                </p>
-              </div>
-            </div>
-            <div class="w-full md:w-1/2 flex items-center justify-center">
-              <div class="security-shield">
-                <div class="shield-body">
-                  <div class="shield-inner"></div>
-                  <div class="shield-border"></div>
-                  <div class="shield-pattern"></div>
-                </div>
-                <div class="shield-glow"></div>
-              </div>
-            </div>
-          </div>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center slide-in slide-in-delay-2 mb-8 mt-auto">
-            <a href="https://github.com/omariomari2/CloudGuard-Dashboard" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base" target="_blank">
-              <i class="fab fa-github"></i>
-              View on GitHub
-            </a>
-            <a href="https://cloudguard-demo.netlify.app/" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base" target="_blank">
-              <i class="fas fa-external-link-alt"></i>
-              View Live
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Automated Call Center with AWS Project -->
-      <div class="w-full flex-shrink-0">
-        <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-16 relative z-10 min-h-screen flex flex-col">
-          <div class="flex flex-col md:flex-row items-center flex-1 gap-8">
-            <!-- Text content -->
-            <div class="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
-              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter mb-4 sm:mb-6 leading-tight slide-in">
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">8. Automated Call Center with AWS</span>
-              </h1>
-              <div class="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
-                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
-                  <i class="fab fa-aws mr-2"></i>AWS Lex
-                </span>
-                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
-                  <i class="fab fa-aws mr-2"></i>AWS Lambda
-                </span>
-                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
-                  <i class="fab fa-aws mr-2"></i>AWS Connect
-                </span>
-                <span class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-gray-800 rounded-full text-gray-300 flex items-center">
-                  <i class="fab fa-js mr-2"></i>JavaScript
-                </span>
-              </div>
-              <div class="w-full border-t border-gray-700 my-4"></div>
-
-              <div class="w-full">
-                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1 md:block hidden">
-                  This project builds an AI-powered call center using Amazon Connect and Amazon Lex, designed to optimize customer interactions through intelligent automation. By integrating real-time call routing, conversational AI, and personalized responses, it ensures efficient service while maintaining scalability and cost-effectiveness. With advanced workflow logic and secure cloud infrastructure, businesses can enhance customer engagement and streamline operations seamlessly.
-                </p>
-                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1 md:block hidden">
-                  I built this system by configuring Amazon Connect to manage inbound calls, selecting DID and Toll-Free numbers for accessibility. To automate interactions, I integrated an Amazon Lex bot, designing intents that allow customers to check balances, request advisors, and navigate services effortlessly. I also developed AWS Lambda functions that pull customer data from DynamoDB, enabling personalized greetings and dynamic call routing. To ensure security, I set up IAM roles, refining access permissions for different components, making the project ready for integrating into professional workplaces.
-                </p>
-                <!-- Mobile Summary -->
-                <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-4 sm:mb-6 font-extralight tracking-wide slide-in slide-in-delay-1 md:hidden">
-                  AI-powered call center using Amazon Connect and Lex, featuring intelligent automation, real-time routing, and personalized customer interactions for efficient service delivery.
-                </p>
-              </div>
-            </div>
-            <div class="w-full md:w-1/2 flex items-center justify-center">
-              <div class="security-shield">
-                <div class="shield-body">
-                  <div class="shield-inner"></div>
-                  <div class="shield-border"></div>
-                  <div class="shield-pattern"></div>
-                </div>
-                <div class="shield-glow"></div>
-              </div>
-            </div>
-          </div>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center slide-in slide-in-delay-2 mb-8 mt-auto">
-            <a href="https://github.com/omariomari2/Automated-Call-Center-with-AWS" class="bg-transparent border border-gray-700/50 rounded-lg px-4 sm:px-6 py-2 sm:py-3 transition-all hover:border-indigo-400/50 hover:text-indigo-400 flex items-center gap-2 text-sm sm:text-base" target="_blank">
-              <i class="fab fa-github"></i>
-              View on GitHub
             </a>
           </div>
         </div>
@@ -1236,6 +1336,70 @@
       card.addEventListener('click', () => {
         card.classList.toggle('flipped');
       });
+    });
+
+    // Scroll Indicator Functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const projects = document.querySelectorAll('.projects-container > div');
+      const dots = document.querySelectorAll('.scroll-dot');
+      let isScrolling = false;
+      let currentIndex = 0;
+
+      // Function to scroll to project
+      function scrollToProject(index) {
+        if (isScrolling) return;
+        isScrolling = true;
+        currentIndex = index;
+        
+        const project = projects[index];
+        project.scrollIntoView({ behavior: 'smooth' });
+        
+        // Update active dot
+        dots.forEach(dot => {
+          dot.classList.remove('active');
+          if (dot.dataset.section == index + 1) {
+            dot.classList.add('active');
+          }
+        });
+
+        // Reset scrolling flag after animation
+        setTimeout(() => {
+          isScrolling = false;
+        }, 1000);
+      }
+
+      // Click dot to scroll to project
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const projectIndex = parseInt(dot.dataset.section) - 1;
+          scrollToProject(projectIndex);
+        });
+      });
+
+      // Update dots on scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const index = Array.from(projects).indexOf(entry.target);
+            dots.forEach(dot => {
+              dot.classList.remove('active');
+              if (dot.dataset.section == index + 1) {
+                dot.classList.add('active');
+              }
+            });
+          }
+        });
+      }, { threshold: 0.5 });
+
+      projects.forEach(project => {
+        observer.observe(project);
+      });
+
+      // Set initial active dot based on visible project
+      const initialProject = document.querySelector('.projects-container > div:first-child');
+      if (initialProject) {
+        observer.observe(initialProject);
+      }
     });
   </script>
 </body>
