@@ -776,10 +776,11 @@
 
 /* Professional Experiences Section */
 .experiences-section {
-  padding: 4rem 0;
+  padding: 4rem 1rem; /* Added horizontal padding */
   position: relative;
   min-height: 100vh;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.95));
+  box-sizing: border-box;
 }
 
 .experiences-container {
@@ -801,9 +802,12 @@
   border: 1px solid rgba(79, 70, 229, 0.2);
   border-radius: 1rem;
   padding: 1.5rem;
+  margin: 0.5rem; /* Added margin for better spacing */
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
+  box-sizing: border-box;
+  width: calc(100% - 1rem); /* Account for margin */
 }
 
 .experience-card:hover {
@@ -906,17 +910,19 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  min-height: 140px;
-  margin: 48px 0;
+  align-items: flex-start;
+  min-height: auto;
+  margin: 0;
+  padding: 0;
   position: relative;
 }
 .zigzag-col {
   flex: 1 1 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
-  min-height: 120px;
+  min-height: auto;
+  padding: 0;
 }
 .zigzag-col.right {
   justify-content: flex-end;
@@ -928,10 +934,11 @@
   pointer-events: none;
 }
 .zigzag-row .experience-card {
-  min-width: 320px;
+  min-width: 280px;
   max-width: 400px;
-  margin: 0 16px;
+  margin: 1rem 16px; /* Added vertical margin */
   z-index: 2;
+  box-sizing: border-box;
 }
 @media (max-width: 900px) {
   .experiences-zigzag-container {
@@ -945,20 +952,31 @@
 @media (max-width: 700px) {
   .zigzag-row {
     flex-direction: column;
-    min-height: unset;
-    margin: 32px 0;
+    min-height: auto;
+    margin: 0;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    width: 100%;
   }
   .zigzag-col.left, .zigzag-col.right {
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
+    padding: 0;
+    margin: 0.5rem 0;
   }
   .zigzag-row .experience-card {
-    margin: 12px 0;
+    margin: 0.75rem 0;
     min-width: 0;
     width: 100%;
-    max-width: 98vw;
+    max-width: 100%;
+    box-sizing: border-box;
   }
-  .experiences-svg-wrapper { display: none; }
+  .experiences-svg-wrapper { 
+    display: none; 
+  }
+  .experience-card {
+    padding: 1.25rem;
+  }
 }
 
 /* Single Timeline Line and Markers */
@@ -976,16 +994,17 @@
 .timeline-marker {
   position: absolute;
   left: 50%;
-  width: 24px;
-  height: 24px;
+  top: 50%;
+  width: 20px;
+  height: 20px;
   background: #fff;
-  border: 4px solid #4f46e5;
+  border: 3px solid #4f46e5;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
 }
 .timeline-label {
   position: absolute;

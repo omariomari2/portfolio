@@ -10,6 +10,21 @@
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="../projects.css">
   <style>
+    /* Hide scroll indicators when professional experiences section is in view */
+    .scroll-indicator {
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    /* Hide scroll indicator when experiences section is in view */
+    .experiences-section.in-view ~ .scroll-indicator {
+      display: none !important;
+    }
+    
+    /* Alternative approach using body class */
+    body.show-scroll-indicator .scroll-indicator {
+      display: flex !important;
+    }
+
     /* Mobile Navigation Styles */
     .mobile-menu {
       transform: translateX(100%);
@@ -523,6 +538,7 @@
       <div class="scroll-dot" data-section="5" data-title="Pomodoro Play"></div>
       <div class="scroll-dot" data-section="6" data-title="Words Per Minute"></div>
       <div class="scroll-dot" data-section="7" data-title="CosmicVista"></div>
+      <!-- Note: Professional Experiences section is not included in the scroll indicator -->
     </div>
 
     <!-- Navigation Buttons -->
@@ -1471,29 +1487,76 @@
         });
       });
 
-      // Update dots on scroll
-      const observer = new IntersectionObserver((entries) => {
+      // Handle scroll indicator and section visibility
+      const experiencesSection = document.querySelector('.experiences-section');
+      const scrollIndicator = document.querySelector('.scroll-indicator');
+      
+      // Function to hide scroll indicator
+      function hideScrollIndicator() {
+        if (scrollIndicator) {
+          scrollIndicator.style.display = 'none';
+        }
+      }
+      
+      // Function to show scroll indicator
+      function showScrollIndicator() {
+        if (scrollIndicator) {
+          scrollIndicator.style.display = 'flex';
+        }
+      }
+      
+      // Initial check for experiences section in URL
+      if (window.location.hash === '#experiences') {
+        hideScrollIndicator();
+      }
+      
+      // Create observer for project sections
+      const projectObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
+          // Handle project sections for dots
+          if (entry.isIntersecting && entry.target !== experiencesSection) {
             const index = Array.from(projects).indexOf(entry.target);
-            dots.forEach(dot => {
-              dot.classList.remove('active');
-              if (dot.dataset.section == index + 1) {
-                dot.classList.add('active');
-              }
-            });
+            if (index >= 0 && index < dots.length) {
+              dots.forEach(dot => {
+                dot.classList.remove('active');
+                if (dot.dataset.section == index + 1) {
+                  dot.classList.add('active');
+                }
+              });
+            }
           }
         });
-      }, { threshold: 0.5 });
+      }, { threshold: 0.3 });
+      
+      // Create separate observer for experiences section
+      const experiencesObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.target === experiencesSection) {
+            if (entry.isIntersecting) {
+              hideScrollIndicator();
+            } else {
+              showScrollIndicator();
+            }
+          }
+        });
+      }, { threshold: 0.3 });
+      
+      // Observe experiences section
+      if (experiencesSection) {
+        experiencesObserver.observe(experiencesSection);
+      }
 
+      // Observe all project sections
       projects.forEach(project => {
-        observer.observe(project);
+        if (project !== experiencesSection) {
+          projectObserver.observe(project);
+        }
       });
 
       // Set initial active dot based on visible project
       const initialProject = document.querySelector('.projects-container > div:first-child');
-      if (initialProject) {
-        observer.observe(initialProject);
+      if (initialProject && initialProject !== experiencesSection) {
+        projectObserver.observe(initialProject);
       }
     });
   </script>
