@@ -120,6 +120,17 @@
       text-decoration: none;
     }
 
+    @media (max-width: 640px) {
+      .hacker-button {
+        padding: 10px 20px;
+        font-size: 16px;
+      }
+      .hacker-button svg {
+        height: 25px;
+        width: 25px;
+      }
+    }
+
     /* 3D Hover Effects */
     .hacker-button:hover {
       background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
@@ -356,14 +367,14 @@
           <h1 class="text-5xl md:text-6xl lg:text-7xl font-light tracking-tighter mb-6 leading-tight slide-in">
             <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">Secure</span> Cloud solutions, <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">Engineer</span> With Impact!
           </h1>
-          <p class="text-gray-300 text-2xl md:text-2xl mb-8 max-w-lg font-extralight tracking-wide slide-in slide-in-delay-1">
+          <p class="text-lg md:text-2xl mb-8 max-w-lg font-extralight tracking-wide slide-in slide-in-delay-1">
             Bringing ideas to life through clean code and security-first thinking.
             <br>Let's build something amazing! <a href="src/components/contact.html" class="text-white font-light hover:underline italic">Together</a>
           </p>
           <div class="flex flex-col sm:flex-row gap-4 slide-in slide-in-delay-2">
-            <div class="flex flex-wrap gap-4">
+            <div class="flex flex-wrap items-center gap-4">
               <div class="button-container">
-                <a href="src/my_resume.pdf" target="_blank" class="hacker-button">
+                <a href="src/my_resume.pdf" target="_blank" class="hacker-button whitespace-nowrap">
                   <svg
                     viewBox="0 0 48 48"
                     height="32"
