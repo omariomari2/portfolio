@@ -454,11 +454,11 @@
         </div>
         <div>
           <p class="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 tracking-tight">0+</p>
-          <p class="text-gray-400 font-medium text-sm sm:text-base">Badges</p>
+          <p class="text-gray-400 font-medium text-sm sm:text-base">Certifications</p>
         </div>
         <div>
           <p class="text-3xl sm:text-4xl md:text-5xl font-bold mb-1 tracking-tight">0+</p>
-          <p class="text-gray-400 font-medium text-sm sm:text-base">Commits</p>
+          <p class="text-gray-400 font-medium text-sm sm:text-base">Git Commits</p>
         </div>
       </div>
     </div>
@@ -542,11 +542,14 @@
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const stats = Array.from(entry.target.querySelectorAll('p.text-5xl'));
-          const finalValues = [1, 8, 30, 400]; // Final values for each stat
+          console.log('Stats section is intersecting, starting animation');
+          const stats = Array.from(entry.target.querySelectorAll('p[class*="text-5xl"]'));
+          console.log('Found stats elements:', stats.length);
+          const finalValues = [0, 5, 2, 150]; // Final values for each stat
           
           // Animate all stats simultaneously
           stats.forEach((stat, index) => {
+            console.log(`Animating stat ${index} from 0 to ${finalValues[index]}`);
             animateValue(stat, 0, finalValues[index], 2500);
           });
           
@@ -559,9 +562,12 @@
     });
 
     // Observe the stats section
-    const statsSection = document.querySelector('.grid.grid-cols-2');
+    const statsSection = document.querySelector('.grid.grid-cols-2.md\\:grid-cols-4');
     if (statsSection) {
       observer.observe(statsSection);
+      console.log('Stats section found and being observed');
+    } else {
+      console.log('Stats section not found');
     }
   </script>
 
