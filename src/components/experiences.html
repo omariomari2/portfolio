@@ -9,6 +9,56 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="../experience.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body, h1, h2, h3, h4, h5, h6, .font-sans {
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif !important;
+    }
+    .experience-tag {
+      background: linear-gradient(to right, #818cf8, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      border: 2px solid;
+      border-image: linear-gradient(to right, #818cf8, #a78bfa) 1;
+      border-radius: 0.5em;
+      padding: 0.25em 1em;
+      display: inline-block;
+    }
+    .experience-container {
+      max-width: 70vw;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    /* Mobile Navigation Styles */
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+    }
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+    .overlay {
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease-in-out;
+    }
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    /* Hide experience details on mobile */
+    @media (max-width: 640px) {
+      .experience-item ul {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body class="bg-black text-white font-light">
   <!-- Navigation -->
@@ -36,6 +86,27 @@
       </button>
     </div>
   </nav>
+
+  <!-- Mobile Navigation Menu -->
+  <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-64 bg-gray-900 shadow-lg z-50 md:hidden" style="transform: translateX(100%); transition: transform 0.3s ease-in-out;">
+    <div class="p-6">
+      <button id="close-menu" class="absolute top-4 right-4 text-gray-300 hover:text-white">
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+      <div class="flex flex-col space-y-6 mt-8">
+        <a href="../../index.html" class="text-gray-300 hover:text-white transition-colors font-semibold text-sm sm:text-base">Home</a>
+        <a href="services.html" class="text-gray-300 hover:text-white transition-colors font-semibold text-sm sm:text-base">Services</a>
+        <a href="experiences.html" class="text-gray-300 hover:text-white transition-colors font-semibold text-sm sm:text-base">Experience</a>
+        <a href="projects.html" class="text-gray-300 hover:text-white transition-colors font-semibold text-sm sm:text-base">Projects</a>
+        <a href="contact.html" class="text-gray-300 hover:text-white transition-colors font-semibold text-sm sm:text-base">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden" style="opacity: 0; visibility: hidden; transition: all 0.3s ease-in-out;"></div>
 
   <div class="experience-container">
     <header class="experience-header">
@@ -158,6 +229,22 @@
     backToTopButton.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    // Mobile menu toggle logic
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMenuButton = document.getElementById('close-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const overlay = document.getElementById('overlay');
+
+    function toggleMenu() {
+      mobileMenu.classList.toggle('active');
+      overlay.classList.toggle('active');
+      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    mobileMenuButton.addEventListener('click', toggleMenu);
+    closeMenuButton.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
   </script>
 </body>
 </html>
