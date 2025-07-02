@@ -79,7 +79,7 @@
   <div id="overlay" class="overlay fixed inset-0 bg-black bg-opacity-50 z-40 backdrop-blur-sm"></div>
   
   <!-- Mobile Navigation Menu -->
-  <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-full max-w-md bg-gray-900 bg-opacity-95 shadow-2xl z-50 md:hidden transform transition-all duration-300 ease-in-out rounded-l-2xl">
+  <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-full max-w-md bg-gray-900 bg-opacity-95 shadow-2xl z-50 md:hidden transform transition-all duration-300 ease-in-out rounded-l-2xl pointer-events-none">
     <div class="p-6">
       <button id="close-menu" class="absolute top-4 right-4 text-gray-300 hover:text-white">
         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -394,9 +394,11 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const card = document.querySelector('.flip-card');
-      card.addEventListener('click', () => {
-        card.classList.toggle('flipped');
-      });
+      if (card) {
+        card.addEventListener('click', () => {
+          card.classList.toggle('flipped');
+        });
+      }
     });
 
     // Add scroll indicator functionality
@@ -405,6 +407,8 @@
       const dots = document.querySelectorAll('.scroll-dot');
       let isScrolling = false;
       let currentSection = 0;
+      let touchStartY = 0;
+      let touchEndY = 0;
 
       // Function to scroll to section
       function scrollToSection(index) {
@@ -428,17 +432,43 @@
         }, 1000);
       }
 
-      // Handle wheel events
+      // Handle wheel events (desktop only)
       window.addEventListener('wheel', (e) => {
-        e.preventDefault();
-        if (isScrolling) return;
+        // Only prevent default on desktop, allow normal scrolling on mobile
+        if (window.innerWidth > 768) {
+          e.preventDefault();
+          if (isScrolling) return;
 
-        if (e.deltaY > 0 && currentSection < sections.length - 1) {
-          scrollToSection(currentSection + 1);
-        } else if (e.deltaY < 0 && currentSection > 0) {
-          scrollToSection(currentSection - 1);
+          if (e.deltaY > 0 && currentSection < sections.length - 1) {
+            scrollToSection(currentSection + 1);
+          } else if (e.deltaY < 0 && currentSection > 0) {
+            scrollToSection(currentSection - 1);
+          }
         }
       }, { passive: false });
+
+      // Handle touch events for mobile
+      window.addEventListener('touchstart', (e) => {
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+
+      window.addEventListener('touchend', (e) => {
+        if (isScrolling) return;
+        
+        touchEndY = e.changedTouches[0].clientY;
+        const touchDiff = touchStartY - touchEndY;
+        const minSwipeDistance = 50; // Minimum distance for swipe
+
+        if (Math.abs(touchDiff) > minSwipeDistance) {
+          if (touchDiff > 0 && currentSection < sections.length - 1) {
+            // Swipe up - go to next section
+            scrollToSection(currentSection + 1);
+          } else if (touchDiff < 0 && currentSection > 0) {
+            // Swipe down - go to previous section
+            scrollToSection(currentSection - 1);
+          }
+        }
+      }, { passive: true });
 
       // Handle keyboard navigation
       window.addEventListener('keydown', (e) => {
@@ -504,6 +534,15 @@
       overlay.classList.toggle('active');
       document.body.style.overflow = isActive ? 'hidden' : '';
       mobileMenuButton.classList.toggle('active', isActive);
+      
+      // Enable/disable pointer events based on menu state
+      if (isActive) {
+        mobileMenu.classList.remove('pointer-events-none');
+        mobileMenu.classList.add('pointer-events-auto');
+      } else {
+        mobileMenu.classList.remove('pointer-events-auto');
+        mobileMenu.classList.add('pointer-events-none');
+      }
       
       // Add smooth transition for menu items
       const navItems = document.querySelectorAll('.nav-item');
