@@ -1654,6 +1654,18 @@
     // Initialize button states
     updateButtons();
 
+    // Handle URL parameters to scroll to specific section
+    const urlParams = new URLSearchParams(window.location.search);
+    const sectionParam = urlParams.get('section');
+    if (sectionParam) {
+      const sectionIndex = parseInt(sectionParam) - 1; // Convert to 0-based index
+      if (sectionIndex >= 0 && sectionIndex < projects.length) {
+        setTimeout(() => {
+          scrollToProject(sectionIndex);
+        }, 100); // Small delay to ensure page is loaded
+      }
+    }
+
     // Handle keyboard navigation
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft' && !prevButton.disabled) {

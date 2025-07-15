@@ -255,6 +255,209 @@
       }
     }
 
+    /* Services Indicator Styles */
+    .services-indicator-list {
+      position: relative;
+      padding: 2rem 0;
+      text-align: right;
+    }
+
+    .service-indicator {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 1.5rem 0;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      opacity: 0.6;
+      flex-direction: row-reverse;
+    }
+
+    .service-indicator.active {
+      opacity: 1;
+    }
+
+    .service-indicator::before {
+      content: '';
+      position: absolute;
+      right: 12px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, transparent, rgba(129, 140, 248, 0.3), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .service-indicator.active::before {
+      opacity: 1;
+    }
+
+    .indicator-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid rgba(129, 140, 248, 0.3);
+      background: rgba(0, 0, 0, 0.5);
+      position: relative;
+      flex-shrink: 0;
+      transition: all 0.4s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .indicator-dot::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: transparent;
+      transition: all 0.4s ease;
+    }
+
+    .service-indicator.active .indicator-dot {
+      border-color: #818cf8;
+      box-shadow: 0 0 20px rgba(129, 140, 248, 0.5);
+      transform: scale(1.1);
+    }
+
+    .service-indicator.active .indicator-dot::before {
+      background: #818cf8;
+      box-shadow: 0 0 10px rgba(129, 140, 248, 0.8);
+    }
+
+    .service-indicator:hover .indicator-dot {
+      border-color: rgba(129, 140, 248, 0.8);
+      transform: scale(1.05);
+    }
+
+    .indicator-content {
+      margin-right: 1.5rem;
+      flex: 1;
+      text-align: right;
+    }
+
+    .service-title {
+      display: block;
+      font-size: 1.25rem;
+      font-weight: 500;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+      color: #e5e7eb;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.025em;
+      transition: color 0.3s ease;
+    }
+
+    .service-indicator.active .service-title {
+      background: linear-gradient(90deg, #818cf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 500;
+    }
+
+    .service-tools {
+      font-size: 0.875rem;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+      font-weight: 300;
+      color: #9ca3af;
+      opacity: 0.85;
+      letter-spacing: 0.025em;
+      line-height: 1.4;
+      transition: all 0.3s ease;
+    }
+
+    .service-indicator.active .service-tools {
+      color: #d1d5db;
+      opacity: 1;
+      font-weight: 400;
+    }
+
+    .service-indicator:hover {
+      opacity: 1;
+    }
+
+    .service-indicator:hover .service-title {
+      color: #f3f4f6;
+    }
+
+    .service-indicator:hover .service-tools {
+      color: #d1d5db;
+      opacity: 1;
+      font-weight: 400;
+    }
+
+    /* Projects Indicator Styles */
+    .projects-indicator-list {
+      position: relative;
+      padding: 2rem 0;
+      text-align: right;
+    }
+
+    .project-indicator {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 1.5rem 0;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      opacity: 0.6;
+      flex-direction: row-reverse;
+    }
+
+    .project-indicator.active {
+      opacity: 1;
+    }
+
+    .project-indicator::before {
+      content: '';
+      position: absolute;
+      right: 12px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, transparent, rgba(251, 146, 60, 0.3), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .project-indicator.active::before {
+      opacity: 1;
+    }
+
+    .project-indicator .indicator-dot {
+      border-color: rgba(251, 146, 60, 0.3);
+    }
+
+    .project-indicator.active .indicator-dot {
+      border-color: #fb923c;
+      box-shadow: 0 0 20px rgba(251, 146, 60, 0.5);
+      transform: scale(1.1);
+    }
+
+    .project-indicator.active .indicator-dot::before {
+      background: #fb923c;
+      box-shadow: 0 0 10px rgba(251, 146, 60, 0.8);
+    }
+
+    .project-indicator:hover .indicator-dot {
+      border-color: rgba(251, 146, 60, 0.8);
+      transform: scale(1.05);
+    }
+
+    .project-indicator.active .service-title {
+      background: linear-gradient(90deg, #fb923c, #f97316);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 500;
+    }
+
     @keyframes glitch {
       0% {
         transform: translate(0) rotateX(0) rotateY(0);
@@ -303,14 +506,25 @@
     body, h1, h2, h3, h4, h5, h6, .font-sans {
       font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif !important;
     }
+
+    .nav-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(8px);
+    }
   </style>
 </head>
 <body class="bg-black text-white font-light">
   <!-- Navigation -->
-  <nav class="container mx-auto px-6 py-6">
-    <div class="flex items-center justify-between">
-      <div class="flex items-center">
-        <svg class="h-8 w-8 text-indigo-400" viewBox="0 0 24 24" fill="currentColor">
+  <div class="nav-wrapper">
+    <nav class="container mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <svg class="h-8 w-8 text-indigo-400" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
         </svg>
         <span class="ml-3 text-lg sm:text-xl tracking-tight"><b>M A R I</b></span>
@@ -333,20 +547,22 @@
         <span class="block absolute w-full h-0.5 bg-indigo-400 transition-all duration-300 transform group-[.active]:opacity-0 bottom-0 left-0"></span>
       </button>
     </div>
-  </nav>
+    </nav>
+    <div class="h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent"></div>
+  </div>
 
   <!-- Overlay for mobile menu -->
   <div id="overlay" class="overlay fixed inset-0 bg-black bg-opacity-50 z-40 backdrop-blur-sm"></div>
   
   <!-- Mobile Navigation Menu -->
   <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-full max-w-md bg-gray-900 bg-opacity-95 shadow-2xl z-50 md:hidden transform transition-all duration-300 ease-in-out rounded-l-2xl pointer-events-none">
-    <div class="p-6">
+    <div class="p-4">
       <button id="close-menu" class="absolute top-4 right-4 text-gray-300 hover:text-white">
         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
-      <div class="flex flex-col space-y-8 mt-16 px-4">
+      <div class="flex flex-col space-y-8 mt-16 px-2">
         <a href="index.html" class="nav-item group flex items-center py-3 px-4 rounded-lg transition-all duration-300 hover:bg-indigo-900/30 hover:pl-6">
           <span class="text-indigo-400 opacity-0 group-hover:opacity-100 mr-2 transition-all duration-300">→</span>
           <span class="text-indigo-400 group-hover:text-white transition-colors font-medium text-base">Home</span>
@@ -376,16 +592,33 @@
 
   <div class="h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent"></div>    
 
-  <div class="relative overflow-hidden">
+  <div class="relative overflow-hidden pt-16">
     <!-- Background gradient -->
     <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-black to-black z-0"></div>
     
+    <!-- Background Globe -->
+    <div class="globe-background fixed top-0 left-0 w-full h-full pointer-events-none" style="z-index: 1;">
+      <div class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2" style="top: 95%;">
+        <div class="relative h-[1600px] w-[1600px]">
+          <div class="absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 rounded-full blur-3xl"></div>
+          <canvas
+            id="cobe"
+            style="width: 1600px; height: 1600px; opacity: 0.3;"
+            width="1600"
+            height="1600"
+            class="relative z-10"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+    
     <!-- Hero content -->
-    <div class="container mx-auto px-6 py-16 md:py-24 relative z-10">
-      <div class="flex flex-col md:flex-row items-center">
-        <!-- Text content -->
-        <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
-            <h3 class="text-gray-300 text-lg sm:text-xl md:text-2xl mb-0 max-w-lg font-extralight tracking-wide slide-in slide-in-delay-1"> Hi, I'm 
+    <div class="w-full py-16 md:py-24 relative z-20">
+      <div class="px-8 md:px-12 lg:px-20">
+        <div class="flex flex-col md:flex-row items-start gap-12 md:gap-16">
+          <!-- Text content -->
+          <div class="md:w-1/2 mb-12 md:mb-0">
+              <h3 class="text-gray-300 text-lg sm:text-xl md:text-2xl mb-0 max-w-lg font-extralight tracking-wide slide-in slide-in-delay-1"> Hi, I'm 
               <span class="font-semibold text-xl sm:text-2xl md:text-2xl lg:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Bright!</span> <br>
             </h3> 
             <p class="text-gray-300 text-base sm:text-lg md:text-2xl mb-0 max-w-lg font-extralight tracking-wide slide-in slide-in-delay-1">
@@ -393,8 +626,8 @@
               </p>
             <div class="w-full border-t border-gray-700 my-4"></div>
 
-          <h1 class="text-2xl sm:text-2xl md:text-4xl lg:text-5xl font-light tracking-tighter mb-6 leading-tight slide-in">
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">Secure</span> Cloud solutions, <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">Engineer</span> With Impact!
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light tracking-tighter mb-6 leading-tight slide-in">
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">Secure</span> Cloud solutions, <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400">Engineering</span> With Impact!
           </h1>
           <p class="text-sm sm:text-base md:text-lg mb-8 max-w-lg font-extralight tracking-wide slide-in slide-in-delay-1">
             Bringing ideas to life through clean code and security-first thinking.
@@ -406,8 +639,8 @@
                 <a href="src/my_resume.pdf" target="_blank" class="hacker-button whitespace-nowrap">
                   <svg
                     viewBox="0 0 48 48"
-                    height="32"
-                    width="32"
+                    height="40"
+                    width="40"
                     xmlns="http://www.w3.org/2000/svg"
                     class="icon play-icon"
                   >
@@ -434,18 +667,18 @@
                 </a>
               </div>
               <div class="flex gap-4">
-                <a href="src/components/contact.html" class="bg-transparent border border-gray-700 rounded-full p-3 transition-all button-hover flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <a href="src/components/contact.html" class="bg-transparent border border-gray-700 rounded-full p-4 transition-all button-hover flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4 1.5" />
                   </svg>
                 </a>
-                <a href="https://github.com/omariomari2" target="_blank" class="bg-transparent border border-gray-700 rounded-full p-3 transition-all button-hover flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                <a href="https://github.com/omariomari2" target="_blank" class="bg-transparent border border-gray-700 rounded-full p-4 transition-all button-hover flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                   </svg>
                 </a>
-                <a href="https://www.linkedin.com/in/owusuomaribright" target="_blank" class="bg-transparent border border-gray-700 rounded-full p-3 transition-all button-hover flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                <a href="https://www.linkedin.com/in/owusuomaribright" target="_blank" class="bg-transparent border border-gray-700 rounded-full p-4 transition-all button-hover flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                   </svg>
                 </a>
@@ -454,39 +687,106 @@
           </div>
         </div>
         
-        <!-- Globe visualization -->
-        <div class="md:w-1/2 relative slide-in slide-in-delay-3">
-          <div class="relative h-[500px] w-[500px] mx-auto">
-            <div class="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
-            <canvas
-              id="cobe"
-              style="width: 500px; height: 500px"
-              width="1000"
-              height="1000"
-              class="relative z-10"
-            ></canvas>
+        <!-- Right Side: Services & Projects -->
+        <div class="md:w-1/2 slide-in slide-in-delay-3">
+          <div class="flex flex-col lg:flex-row gap-8 lg:gap-6">
+            <!-- Services Indicator -->
+            <div class="flex-1">
+              <div class="services-indicator-list">
+                <div class="service-indicator active" data-service="cloud">
+                  <div class="indicator-dot"></div>
+                  <div class="indicator-content">
+                    <span class="service-title">Cloud & Devops</span>
+                    <div class="service-tools">AWS • Google Cloud • Azure</div>
+                  </div>
+                </div>
+                
+                <div class="service-indicator" data-service="backend">
+                  <div class="indicator-dot"></div>
+                  <div class="indicator-content">
+                    <span class="service-title">Backend</span>
+                    <div class="service-tools">Python • Java • JavaScript • NodeJS </div>
+                  </div>
+                </div>
+                
+                <div class="service-indicator" data-service="frontend">
+                  <div class="indicator-dot"></div>
+                  <div class="indicator-content">
+                    <span class="service-title">Frontend & Interface</span>
+                    <div class="service-tools">React • Three.js • GSAP</div>
+                  </div>
+                </div>
+                
+                <div class="service-indicator" data-service="security">
+                  <div class="indicator-dot"></div>
+                  <div class="indicator-content">
+                    <span class="service-title">Cybersecurity</span>
+                    <div class="service-tools">HTB • TryHackMe • Cisco • AWS</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Projects Indicator -->
+            <div class="flex-1">
+              <div class="projects-indicator-list">
+                <div class="project-indicator active" data-project="erp">
+                  <div class="indicator-dot"></div>
+                  <div class="indicator-content">
+                    <span class="service-title">Enterprise ERP System</span>
+                    <div class="service-tools">Python • Flask • PostgreSQL • JWT</div>
+                  </div>
+                </div>
+                
+                <div class="project-indicator" data-project="callcenter">
+                  <div class="indicator-dot"></div>
+                  <div class="indicator-content">
+                    <span class="service-title">Automated Call Center</span>
+                    <div class="service-tools">AWS Lex • Lambda • Connect • DynamoDB</div>
+                  </div>
+                </div>
+                
+                <div class="project-indicator" data-project="msunit">
+                  <div class="indicator-dot"></div>
+                  <div class="indicator-content">
+                    <span class="service-title">MSUnit Clinical System</span>
+                    <div class="service-tools">Python • Django • MySQL • AWS S3</div>
+                  </div>
+                </div>
+                
+                <div class="project-indicator" data-project="wvs">
+                  <div class="indicator-dot"></div>
+                  <div class="indicator-content">
+                    <span class="service-title">WVS Security Scanner</span>
+                    <div class="service-tools">Python • Django • Gemini API • AIOHTTPS</div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
           </div>
         </div>
+
       </div>
       
       <div class="h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent my-16"></div>
       
       <!-- Stats -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 slide-in slide-in-delay-3">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 slide-in slide-in-delay-3 text-center px-2 md:px-3">
         <div>
-          <p class="text-2xl sm:text-3xl md:text-5xl font-bold mb-1 tracking-tight">0+</p>
+          <p class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-1 tracking-tight">0+</p>
           <p class="text-gray-400 font-medium text-sm sm:text-base">Years of Experience</p>
         </div>
         <div>
-            <p class="text-2xl sm:text-3xl md:text-5xl font-bold mb-1 tracking-tight">0+</p>
+            <p class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-1 tracking-tight">0+</p>
             <p class="text-gray-400 font-medium text-sm sm:text-base">Projects</p>
         </div>
         <div>
-          <p class="text-2xl sm:text-3xl md:text-5xl font-bold mb-1 tracking-tight">0+</p>
+          <p class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-1 tracking-tight">0+</p>
           <p class="text-gray-400 font-medium text-sm sm:text-base">Certifications</p>
         </div>
         <div>
-          <p class="text-2xl sm:text-3xl md:text-5xl font-bold mb-1 tracking-tight">0+</p>
+          <p class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-1 tracking-tight">0+</p>
           <p class="text-gray-400 font-medium text-sm sm:text-base">Git Commits</p>
         </div>
       </div>
@@ -500,31 +800,31 @@
     let canvas = document.getElementById("cobe")
 
     const globe = createGlobe(canvas, {
-      devicePixelRatio: 2,
-      width: 1000,
-      height: 1000,
+      devicePixelRatio: 1,
+      width: 1600,
+      height: 1600,
       phi: 0,
       theta: 0,
       dark: 1,
-      diffuse: 1.2,
+      diffuse: 0.4,
       scale: 1,
-      mapSamples: 16000,
-      mapBrightness: 6,
-      baseColor: [0.3, 0.3, 0.9],
-      markerColor: [0.9, 0.5, 1],
-      glowColor: [0.2, 0.2, 1],
+      mapSamples: 8000,
+      mapBrightness: 2,
+      baseColor: [0.2, 0.2, 0.6],
+      markerColor: [0.6, 0.3, 0.8],
+      glowColor: [0.1, 0.1, 0.5],
       offset: [0, 0],
       markers: [
-        { location: [37.7595, -122.4367], size: 0.03 },
-        { location: [40.7128, -74.006], size: 0.1 },
-        { location: [51.5074, -0.1278], size: 0.05 },
-        { location: [35.6762, 139.6503], size: 0.05 },
-        { location: [22.3193, 114.1694], size: 0.03 },
-        { location: [-33.8688, 151.2093], size: 0.03 },
+        { location: [37.7595, -122.4367], size: 0.02 },
+        { location: [40.7128, -74.006], size: 0.06 },
+        { location: [51.5074, -0.1278], size: 0.03 },
+        { location: [35.6762, 139.6503], size: 0.03 },
+        { location: [22.3193, 114.1694], size: 0.02 },
+        { location: [-33.8688, 151.2093], size: 0.02 },
       ],
       onRender: (state) => {
         state.phi = phi
-        phi += 0.005
+        phi += 0.003
       },
     })
   </script>
@@ -637,6 +937,74 @@
 
     // Start the interval
     setInterval(startAutoAnimation, 10000); // Run every 10 seconds
+  </script>
+
+  <!-- Services Indicator Interaction Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const serviceIndicators = document.querySelectorAll('.service-indicator');
+
+      // Manual click handling
+      serviceIndicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+          const serviceType = indicator.getAttribute('data-service');
+          let targetSection = '';
+          
+          // Map service types to section IDs in services.html
+          switch(serviceType) {
+            case 'cloud':
+              targetSection = '#section-1';
+              break;
+            case 'backend':
+              targetSection = '#section-2';
+              break;
+            case 'frontend':
+              targetSection = '#section-3';
+              break;
+            case 'security':
+              targetSection = '#section-4';
+              break;
+          }
+          
+          // Navigate to services.html with the specific section
+          window.location.href = `src/components/services.html${targetSection}`;
+        });
+      });
+    });
+  </script>
+
+  <!-- Projects Indicator Interaction Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const projectIndicators = document.querySelectorAll('.project-indicator');
+
+      // Manual click handling
+      projectIndicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+          const projectType = indicator.getAttribute('data-project');
+          let targetSection = '';
+          
+          // Map project types to section numbers in projects.html
+          switch(projectType) {
+            case 'erp':
+              targetSection = '?section=2'; // Enterprise ERP System
+              break;
+            case 'callcenter':
+              targetSection = '?section=3'; // Automated Call Center
+              break;
+            case 'msunit':
+              targetSection = '?section=4'; // MSUnit
+              break;
+            case 'wvs':
+              targetSection = '?section=5'; // WVS Security Scanner
+              break;
+          }
+          
+          // Navigate to projects.html with the specific section
+          window.location.href = `src/components/projects.html${targetSection}`;
+        });
+      });
+    });
   </script>
 </body>
 </html>

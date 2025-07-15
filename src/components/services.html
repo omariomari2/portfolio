@@ -515,16 +515,30 @@
         });
       });
 
-      // Set initial active dot based on first visible section
-      setTimeout(() => {
-        const firstSection = sections[0];
-        if (firstSection) {
-          const rect = firstSection.getBoundingClientRect();
-          if (rect.top <= window.innerHeight * 0.5) {
-            updateActiveDot(0);
+      // Handle URL hash to scroll to specific section
+      const hash = window.location.hash;
+      if (hash) {
+        const targetSection = document.querySelector(hash);
+        if (targetSection) {
+          const sectionIndex = Array.from(sections).indexOf(targetSection);
+          if (sectionIndex >= 0) {
+            setTimeout(() => {
+              scrollToSection(sectionIndex);
+            }, 100); // Small delay to ensure page is loaded
           }
         }
-      }, 100);
+      } else {
+        // Set initial active dot based on first visible section
+        setTimeout(() => {
+          const firstSection = sections[0];
+          if (firstSection) {
+            const rect = firstSection.getBoundingClientRect();
+            if (rect.top <= window.innerHeight * 0.5) {
+              updateActiveDot(0);
+            }
+          }
+        }, 100);
+      }
     });
   </script>
 
